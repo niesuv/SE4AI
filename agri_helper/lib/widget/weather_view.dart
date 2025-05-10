@@ -48,9 +48,11 @@ class _WeatherViewState extends ConsumerState<WeatherView> {
 
       final addr = resp.data["results"]?[0]?["formatted_address"] as String?;
       setState(() {
+
         currentLoc = addr ?? 'Không có thông tin';
         ref.read(UserProvider.notifier).setAdd(currentLoc);
         isLoad = false;
+
       });
     } catch (e) {
       setState(() {

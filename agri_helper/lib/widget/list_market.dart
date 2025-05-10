@@ -26,7 +26,9 @@ class _ListMarketState extends ConsumerState<ListMarket> {
     var headers = {
       'X-Goog-FieldMask':
           'places.displayName.text,places.nationalPhoneNumber,places.googleMapsUri,places.location',
+
       'X-Goog-Api-Key': apiGoogleMapKey,
+
       'Content-Type': 'application/json'
     };
     var data = json.encode({

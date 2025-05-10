@@ -41,6 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
+
     apiKey: 'AIzaSyAXxvWE5klDHky06QekVZbZqyUMB1ZMb-Y',
     appId: '1:40116824756:web:845651d4f25a98573545e1',
     messagingSenderId: '40116824756',
@@ -63,19 +64,23 @@ class DefaultFirebaseOptions {
     messagingSenderId: '40116824756',
     projectId: 'agriculture-helper-9f2e7',
     storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
+
     iosBundleId: 'com.example.agriHelper',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
+
     apiKey: 'AIzaSyAV0zGfHGO3liSB28-A1Q5Uaxioa0DeWXY',
     appId: '1:40116824756:ios:9ec502a9f7eeb9e53545e1',
     messagingSenderId: '40116824756',
     projectId: 'agriculture-helper-9f2e7',
     storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
+
     iosBundleId: 'com.example.agriHelper',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
+
     apiKey: 'AIzaSyAXxvWE5klDHky06QekVZbZqyUMB1ZMb-Y',
     appId: '1:40116824756:web:845651d4f25a98573545e1',
     messagingSenderId: '40116824756',
@@ -84,3 +89,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
   );
 }
+
