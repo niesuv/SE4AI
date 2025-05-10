@@ -26,6 +26,7 @@ class _WeatherViewState extends ConsumerState<WeatherView> {
     final loc = await Geolocator.getCurrentPosition().then((value) {
       setState(() {
         print(value);
+        print('---------------');
         ref.read(UserProvider.notifier).setloc(value.latitude, value.longitude);
         var dio = Dio();
         var response = dio
