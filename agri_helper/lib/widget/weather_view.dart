@@ -1,15 +1,13 @@
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/provider/user_provider.dart';
-import 'package:agri_helper/widget/list_market.dart';
 import 'package:agri_helper/widget/weather_list.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 class WeatherView extends ConsumerStatefulWidget {
-  WeatherView({super.key});
+  const WeatherView({Key? key}) : super(key: key);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
@@ -18,73 +16,64 @@ class WeatherView extends ConsumerStatefulWidget {
 }
 
 class _WeatherViewState extends ConsumerState<WeatherView> {
-  var data;
-  var currentplace;
-  var currentLoc;
-  var isLoad = true;
-  void loadLoc() async {
-    final loc = await Geolocator.getCurrentPosition().then((value) {
-      setState(() {
-        print(value);
-        ref.read(UserProvider.notifier).setloc(value.latitude, value.longitude);
-        var dio = Dio();
-        var response = dio
-            .request(
-          'https://maps.googleapis.com/maps/api/geocode/json?latlng=${value.latitude},${value.longitude}&key=${apiGoogleMapKey}',
-          options: Options(
-            method: 'GET',
-          ),
-        )
-            .then(
-          (val) {
-            setState(() {
-              currentLoc = val.data["results"][0]["formatted_address"];
-              ref.read(UserProvider.notifier).setAdd(currentLoc);
-              isLoad = false;
-            });
-          },
-        );
-      });
-    }).onError((error, stackTrace) {
-      setState(() {
-        isLoad = false;
-        currentLoc = "Không có thông tin";
-      });
-    });
-  }
-
-  void getLocate() async {
-    setState(() {
-      isLoad = true;
-    });
-    var permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        setState(() {
-          currentLoc = "Không có quyền truy cập.";
-        });
-      } else {
-        loadLoc();
-      }
-    } else if (permission == LocationPermission.deniedForever) {
-      setState(() {
-        currentLoc = "Không có quyền truy cập.";
-      });
-    } else {
-      loadLoc();
-    }
-  }
+  String currentLoc = '';
+  bool isLoad = true;
 
   @override
   void initState() {
     super.initState();
-    currentLoc = ref.read(UserProvider)["add"];
-    if (currentLoc == "") {
-      getLocate();
+    currentLoc = ref.read(UserProvider)["add"] ?? '';
+    if (currentLoc.isEmpty) {
+      _getLocate();
+    } else {
+      isLoad = false;
+    }
+  }
+
+  Future<void> _loadLoc() async {
+    try {
+      final pos = await Geolocator.getCurrentPosition();
+      print("__________________________________\n");
+      print(pos);
+      ref.read(UserProvider.notifier).setloc(pos.latitude, pos.longitude);
+
+      final dio = Dio();
+      final resp = await dio.get(
+        'https://maps.googleapis.com/maps/api/geocode/json',
+        queryParameters: {
+          'latlng': '${pos.latitude},${pos.longitude}',
+          'key': apiGoogleMapKey,
+        },
+      );
+
+      final addr = resp.data["results"]?[0]?["formatted_address"] as String?;
+      setState(() {
+        currentLoc = addr ?? 'Không có thông tin';
+        ref.read(UserProvider.notifier).setAdd(currentLoc);
+        isLoad = false;
+      });
+    } catch (e) {
+      setState(() {
+        currentLoc = 'Không có thông tin';
+        isLoad = false;
+      });
+    }
+  }
+
+  Future<void> _getLocate() async {
+    setState(() {
+      isLoad = true;
+    });
+    var perm = await Geolocator.checkPermission();
+    if (perm == LocationPermission.denied) {
+      perm = await Geolocator.requestPermission();
+    }
+    if (perm == LocationPermission.whileInUse ||
+        perm == LocationPermission.always) {
+      await _loadLoc();
     } else {
       setState(() {
+        currentLoc = 'Không có quyền truy cập.';
         isLoad = false;
       });
     }
@@ -94,25 +83,14 @@ class _WeatherViewState extends ConsumerState<WeatherView> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
           Row(
             children: [
-              SizedBox(
-                width: 20,
-              ),
-              Icon(
-                Icons.add_location_outlined,
-                color: buttonBack,
-                size: 30,
-              ),
-              SizedBox(
-                width: 15,
-              ),
+              SizedBox(width: 20),
+              Icon(Icons.add_location_outlined,
+                  color: buttonBack, size: 30),
+              SizedBox(width: 15),
               isLoad
                   ? CircularProgressIndicator()
                   : Expanded(
@@ -122,7 +100,7 @@ class _WeatherViewState extends ConsumerState<WeatherView> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 20),
                       ),
-                    )
+                    ),
             ],
           ),
           Container(
@@ -130,14 +108,16 @@ class _WeatherViewState extends ConsumerState<WeatherView> {
             margin: EdgeInsets.only(left: 20, top: 10),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: buttonBack, foregroundColor: Colors.white),
-              onPressed: getLocate,
+                  backgroundColor: buttonBack,
+                  foregroundColor: Colors.white),
+              onPressed: _getLocate,
               child: Text("Cập nhật vị trí"),
             ),
           ),
-          !currentLoc.toString().startsWith("Không") && !isLoad
-              ? new WeatherScreen()
-              : Center()
+          if (!currentLoc.startsWith("Không") && !isLoad)
+            const WeatherScreen()
+          else
+            const SizedBox.shrink(),
         ],
       ),
     );
