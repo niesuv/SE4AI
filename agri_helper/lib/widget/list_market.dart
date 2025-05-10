@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/widget/market_item.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _ListMarketState extends ConsumerState<ListMarket> {
     var headers = {
       'X-Goog-FieldMask':
           'places.displayName.text,places.nationalPhoneNumber,places.googleMapsUri,places.location',
-      'X-Goog-Api-Key': GOOGLE_MAP_API_KEY,
+      'X-Goog-Api-Key': apiGoogleMapKey,
       'Content-Type': 'application/json'
     };
     var data = json.encode({
