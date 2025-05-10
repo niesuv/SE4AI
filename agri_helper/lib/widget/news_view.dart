@@ -34,7 +34,7 @@ class _NewsViewState extends ConsumerState<NewsView> {
       );
       response.then((value) {
         if (value.statusCode == 200) {
-          final res = value.data["data"];
+          final res = value.data;
           setState(() {
             data = res;
           });

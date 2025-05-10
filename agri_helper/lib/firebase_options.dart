@@ -41,47 +41,52 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAqmxdvaeqpQsm_V0KzQbEUnLOqLZ8wtHQ',
-    appId: '1:678941508467:web:3e3874109447c73bc97b06',
-    messagingSenderId: '678941508467',
-    projectId: 'agri-helper-9cea4',
-    authDomain: 'agri-helper-9cea4.firebaseapp.com',
-    storageBucket: 'agri-helper-9cea4.firebasestorage.app',
+
+    apiKey: 'AIzaSyAXxvWE5klDHky06QekVZbZqyUMB1ZMb-Y',
+    appId: '1:40116824756:web:845651d4f25a98573545e1',
+    messagingSenderId: '40116824756',
+    projectId: 'agriculture-helper-9f2e7',
+    authDomain: 'agriculture-helper-9f2e7.firebaseapp.com',
+    storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCnUuHW0C_kVSdxYMzFlH4T5fUdPNZzZxw',
-    appId: '1:678941508467:android:a26f903ca726f2b4c97b06',
-    messagingSenderId: '678941508467',
-    projectId: 'agri-helper-9cea4',
-    storageBucket: 'agri-helper-9cea4.firebasestorage.app',
+    apiKey: 'AIzaSyAB693lAAuSo1MO-0PRnV7uVfXHkaFHVOw',
+    appId: '1:40116824756:android:9167a1302ac01d193545e1',
+    messagingSenderId: '40116824756',
+    projectId: 'agriculture-helper-9f2e7',
+    storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD4_-sOzBlgbTLETp98f3wBUYInmudERjI',
-    appId: '1:678941508467:ios:3080a78d1bac4b58c97b06',
-    messagingSenderId: '678941508467',
-    projectId: 'agri-helper-9cea4',
-    storageBucket: 'agri-helper-9cea4.firebasestorage.app',
+    apiKey: 'AIzaSyAV0zGfHGO3liSB28-A1Q5Uaxioa0DeWXY',
+    appId: '1:40116824756:ios:9ec502a9f7eeb9e53545e1',
+    messagingSenderId: '40116824756',
+    projectId: 'agriculture-helper-9f2e7',
+    storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
+
     iosBundleId: 'com.example.agriHelper',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD4_-sOzBlgbTLETp98f3wBUYInmudERjI',
-    appId: '1:678941508467:ios:3080a78d1bac4b58c97b06',
-    messagingSenderId: '678941508467',
-    projectId: 'agri-helper-9cea4',
-    storageBucket: 'agri-helper-9cea4.firebasestorage.app',
+
+    apiKey: 'AIzaSyAV0zGfHGO3liSB28-A1Q5Uaxioa0DeWXY',
+    appId: '1:40116824756:ios:9ec502a9f7eeb9e53545e1',
+    messagingSenderId: '40116824756',
+    projectId: 'agriculture-helper-9f2e7',
+    storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
+
     iosBundleId: 'com.example.agriHelper',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAqmxdvaeqpQsm_V0KzQbEUnLOqLZ8wtHQ',
-    appId: '1:678941508467:web:9934a9f755efcc5cc97b06',
-    messagingSenderId: '678941508467',
-    projectId: 'agri-helper-9cea4',
-    authDomain: 'agri-helper-9cea4.firebaseapp.com',
-    storageBucket: 'agri-helper-9cea4.firebasestorage.app',
-  );
 
+    apiKey: 'AIzaSyAXxvWE5klDHky06QekVZbZqyUMB1ZMb-Y',
+    appId: '1:40116824756:web:845651d4f25a98573545e1',
+    messagingSenderId: '40116824756',
+    projectId: 'agriculture-helper-9f2e7',
+    authDomain: 'agriculture-helper-9f2e7.firebaseapp.com',
+    storageBucket: 'agriculture-helper-9f2e7.firebasestorage.app',
+  );
 }
+

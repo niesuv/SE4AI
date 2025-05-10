@@ -39,6 +39,7 @@ class _MarketViewState extends ConsumerState<MarketView> {
           (val) {
             setState(() {
               currentLoc = val.data["results"][0]["formatted_address"];
+              print(currentLoc);
               ref.read(UserProvider.notifier).setAdd(currentLoc);
               isLoad = false;
             });

@@ -7,5 +7,5 @@ final urlAPI = Uri.http("35.247.138.127", "api-ai/predict");
 
 final background = Color.fromARGB(255, 245, 245, 245);
 final apilua = 'http://35.247.138.127/api-ai/predict';
-final apitintuc = 'http://35.247.138.127/api-ai/tintucnongnghiep';
+final apitintuc = 'https://xt5g626akzl6kxk3lqfbhqi4au0iemnt.lambda-url.us-east-2.on.aws/';
 final apiGoogleMapKey = dotenv.env["googlemap_api_key"];
