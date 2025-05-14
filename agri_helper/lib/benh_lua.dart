@@ -1,114 +1,281 @@
 const info = {
-  "bacterial_leaf_blight": {
-    "name": "Bạc lá lúa",
-    "info":
-        """Lúa nhiễm bệnh có 3 triệu chứng điển hình là: bạc lá, vàng nhợt, héo xanh. Bệnh bạc lá lúa phát sinh phá hại suốt từ thời kỳ mạ đến chín nhưng có triệu chứng điển hình là ở thời kỳ lúa cấy trên ruộng từ sau đẻ - trỗ, chín sữa.
-Do vi khuẩn Xanthomonas oryzae gây ra.
-Nguồn gây bệnh bạc tồn tại chủ yếu trên một số cỏ dại họ hòa thảo, tàn dư rơm rạ của cây bệnh, lúa chét, cỏ môi, cỏ lồng vực, cỏ gừng bò.... Và có khả năng phát triển mạnh nhất ở những gốc cây bị nhiễm bệnh và các giống lúa mẫn cảm khi bón nhiều đạm.
-Biện pháp hóa học:
-Phun Bismerthiazol, Copper hydroxide, Oxolinic acid, Thiadiazole zinc, Thiadiazole copper,… khi mới xuất hiện.
-Biện pháp sinh học:
-Sử dụng các loại thiên địch như: nấm đối kháng (nấm xanh Metarhizium anisopliae, nấm trắng Beauveria bassiana ký sinh rầy; ong mắt đỏ ký sinh sâu đục thân, nhện linh miêu.
-"""
+  // Apple
+  "Apple___Cedar_apple_rust": {
+    "name": "Bệnh rỉ sắt táo",
+    "info": "Thông tin về bệnh rỉ sắt táo đang được cập nhật."
   },
-  "brown_spot": {
-    "name": "Đốm nâu hại lúa",
-    "info":
-        """Lúa nhiễm bệnh xuất hiện các đốm tròn bầu dục màu nâu với một quầng màu vàng; thân lá bạc màu rồi héo dần. Giai đoạn lúa đẻ nhánh lá dễ nhận ra bệnh nhất, nhất là khi thời tiết ẩm ước.
-Do nấm Cochliobolus miyabeanus gây ra.
-Bệnh thường xảy ra ở những cánh đồng thiếu các chất vi lượng (bón phân không hợp lý).
-Biện pháp hóa học:
-Sử dụng các loại thuốc diệt nấm lúa như: Iprodione, Propiconazole, …
-Đảm bảo lượng Calcium silicate trong đất trước khi trồng.
-Biện pháp sinh học:
-Đảm bảo nguồn hạt giống không bị nhiễm nấm, ngâm hạt trong nước nóng (khoảng 53c-54c) trong ~10’.
-"""
+  "Apple___Apple_scab": {
+    "name": "Bệnh loét táo",
+    "info": "Thông tin về bệnh loét táo đang được cập nhật."
   },
-  "leaf_blast": {
-    "name": "Đạo ôn",
-    "info":
-        """Là một trong những bệnh gây thiệt hại lớn nhất cho nông nghiệp toàn thế giới.Lúc đầu vết bệnh chỉ nhỏ như đầu mũi kim, màu xám xanh giống như bị nước sôi, sau chuyển sang màu nâu, rồi lan rộng dần ra thành hình thoi (hình mắt én) xung quanh màu nâu đậm, giữa màu xám trắng. Nếu nặng, nhiều vết liên kết lại với nhau tạo thành mảng lớn, có thể làm lá bị khô cháy, cây lúa lụi tàn, gây thất thu năng suất nghiêm trọng.
-Do nấm Magnaporthe oryzae.
-Bào tử nấm bệnh lây lan theo gió và hạt giống.
-Biện pháp hóa học:
-Sử dụng một số loại thuốc đặc trị có chứa hoạt chất: Tricyclazole, Fenoxanil để phòng trị.
-Không bón dư đạm.
-Biện pháp sinh học:
-Không trồng mật độ quá lớn để ánh sáng có thể xuyên qua, hạn chế nấm.
-Vệ sinh đồng để tiêu diệt các ký chủ phụ của mầm nấm.
-Đảm bảo ruộng không khô nước.
-"""
+  "Apple___Black_rot": {
+    "name": "Bệnh thối đen táo",
+    "info": "Thông tin về bệnh thối đen táo đang được cập nhật."
   },
-  "leaf_scald": {
-    "name": "Vàng/ Cháy lá lúa",
-    "info":
-        """Triệu chứng bệnh là những vùng cháy hoặc nâu trên lá lúa ở gần ngọn, cạnh lá lúa bị cháy. Thường xuất hiện ở lá trưởng thành trong thời tiết ẩm ước.
-Do Microdochium oryzae.
-Các loài vi khuẩn xâm nhiễm chủ yếu qua vết thương cơ giới. Do mưa, gió các lá lúa cọ xát vào nhau gây tổn thương. 
-Biện pháp hóa học:
-Hạn chế bón phân quá liều. Đặc điểm là bón đạm theo từng đợt.
-Các loại thuốc trị: Benomyl, Fentin acetate, Edifenphos, and Validamycin.
-Các loại thuốc ngừa: Becaptafol, Mancozeb, and Copper oxychloride.
-Biện pháp sinh học:
-Trực tiếp loại bỏ các phần lúa nhiễm bệnh để ngăn lây lan.
-Cày xới đất.
-"""
-  },
-  "rice_hispa": {
-    "name": "Bọ gai hại lúa",
-    "info":
-        """Lúa bị bọ ăn đi lớp biểu bì, tạo ra các dải trắng dài dọc các đường gân. Thường gặp vào các giai đoạn mưa nhiều.
-Do bọ Dicladispa armigera gây nên.
-Bọ gai sinh trưởng ở nơi độ ẩm cao, cỏ dại; việc bón phân quá mức cũng kích thích bọ sinh trưởng.
-Biện pháp hóa học:
-Hạn chế bón phân quá mức.
-Biện pháp sinh học:
-Sử dụng ong tò vò và côn trùng thuộc chi Reduviidae.
-Cắt tỉa lá, chồi nhiễm bệnh (sau đó chôn vào bùn làm có thể làm giảm tỉ lệ ấu trùng ~80%)
-"""
-  },
-  "sheath_blight": {
-    "name": "Bệnh khô vằn",
-    "info":
-        """Lúa bị nhiễm bệnh tồn tại các mảng cháy hình oval, sau lan ra toàn bộ lá. Gây thiệt hại nghiêm trọng chỉ sau đạo ôn trên lúa.
-Do nấm Rhizoctonia solani.
-Bào tử nấm không lay lan theo không khí mà dựa vào rễ cây.
-Biện pháp hóa học:
-Sử dụng một trong các loại thuốc có hoạt chất Validamycin như Validacin 5L, Vali 5SL, Vivadamy 5WP,... hoặc thuốc Nevo 330EC, Mixperfect 525SC,…để phun trừ.
-Biện pháp sinh học:
-Dọn sạch tàn dư sau thu hoạch, không gieo cấy quá dày.
-Không để ruộng lúa bị ngập nước.
-"""
-  },
-  "tungro": {
-    "name": "Bệnh Tungro",
-    "info":
-        """Lúa bị nhiễm bệnh mất màu, vàng lá, cây chậm lớn. Thường xảy ra vào lúc lúa đẻ nhanh.
-Do 2 loại virus gây ra.
-Truyền bởi châu chấu, cào cào.
-Biện pháp hóa học: 
-Phun các loại thuốc diệt châu chấu, cào cào.
-Biện pháp sinh học:
-Luân canh.
-Sử dụng động vật ăn châu chấu, cào cào.
-"""
-  },
-  "narrow_brown_spot": {
-    "name": "Gạch nâu",
-    "info":
-        """Lúa nhiễm bệnh có trên lá vết bệnh có màu nâu thuôn dài, bệnh nặng làm lúa ngả vàng và cháy khô đầu lá. Bệnh xuất hiện trong một số mùa vụ nhất định , rồi biến mất, khó gặp lại. Bệnh gây hại khá quan trọng do làm giảm khả năng quang hợp của lá lúa.
-Do Sphaerulina oryzina gây ra (nấm nang).
-Bào tử nấm bệnh lây lan theo gió và hạt giống.
-Biện pháp hóa học:
-Sử dụng thuốc có các hoạt chất như carbendazim, propiconazole, azoxystrobin để ngăn ngừa sự lây lan.
-Bón thừa phân kali sẻ làm bệnh phát triển mạnh. Bón đủ phân lân.
-Biện pháp sinh học:
-Vệ sinh cỏ dại ven bờ đê để tiêu diệt các ký chủ phụ của mầm bệnh trách lây lan cho lúa.
-"""
-  },
-  "healthy": {
+  "Apple___healthy": {
     "name": "Khỏe mạnh",
-    "info":
-        "Hãy Tiếp tục chăm sóc lúa của bạn cẩn thận nhé, kết quả không phải luôn chính xác tuyệt đối!"
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+
+  // Strawberry
+  "Strawberry___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Strawberry___Leaf_scorch": {
+    "name": "Bệnh cháy mép lá dâu",
+    "info": "Thông tin về bệnh cháy mép lá dâu đang được cập nhật."
+  },
+
+  // Rice
+  "Sheath Blight": {
+    "name": "Bệnh khô vằn",
+    "info": "Thông tin về bệnh khô vằn ở lúa đang được cập nhật."
+  },
+  "Leaf Blast": {
+    "name": "Bệnh đạo ôn lá",
+    "info": "Thông tin về bệnh đạo ôn lá đang được cập nhật."
+  },
+  "Bacterial Leaf Blight": {
+    "name": "Bệnh bạc lá vi khuẩn",
+    "info": "Thông tin về bệnh bạc lá vi khuẩn đang được cập nhật."
+  },
+  "Healthy Rice Leaf": {
+    "name": "Lá lúa khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây lúa của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Brown Spot": {
+    "name": "Bệnh đốm nâu",
+    "info": "Thông tin về bệnh đốm nâu ở lúa đang được cập nhật."
+  },
+  "Leaf scald": {
+    "name": "Bệnh cháy lá",
+    "info": "Thông tin về bệnh cháy lá lúa đang được cập nhật."
+  },
+
+  // Potato
+  "Potato___Early_blight": {
+    "name": "Bệnh khô vằn sớm khoai tây",
+    "info": "Thông tin về bệnh khô vằn sớm khoai tây đang được cập nhật."
+  },
+  "Potato___Late_blight": {
+    "name": "Bệnh khô vằn muộn khoai tây",
+    "info": "Thông tin về bệnh khô vằn muộn khoai tây đang được cập nhật."
+  },
+  "Potato___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+
+  // Durian
+  "LEAF_BLIGHT": {
+    "name": "Bệnh cháy lá sầu riêng",
+    "info": "Thông tin về bệnh cháy lá sầu riêng đang được cập nhật."
+  },
+  "HEALTHY_LEAF": {
+    "name": "Lá khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "ALLOCARIDARA_ATTACK": {
+    "name": "Bệnh do Allocari gây hại",
+    "info": "Thông tin về bệnh do Allocari gây hại đang được cập nhật."
+  },
+  "ALGAL_LEAF_SPOT": {
+    "name": "Bệnh đốm lá do tảo",
+    "info": "Thông tin về bệnh đốm lá do tảo đang được cập nhật."
+  },
+  "PHOMOPSIS_LEAF_SPOT": {
+    "name": "Bệnh đốm lá do Phomopsis",
+    "info": "Thông tin về bệnh đốm lá do Phomopsis đang được cập nhật."
+  },
+
+  // Mango (plant)
+  "Bacterial Canker": {
+    "name": "Bệnh loét vi khuẩn",
+    "info": "Thông tin về bệnh loét vi khuẩn ở xoài đang được cập nhật."
+  },
+  "Anthracnose": {
+    "name": "Bệnh thán thư",
+    "info": "Thông tin về bệnh thán thư ở xoài đang được cập nhật."
+  },
+  "Healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Powdery Mildew": {
+    "name": "Bệnh sương mai",
+    "info": "Thông tin về bệnh sương mai ở xoài đang được cập nhật."
+  },
+  "Cutting Weevil": {
+    "name": "Sâu xén lá",
+    "info": "Thông tin về sâu xén lá ở xoài đang được cập nhật."
+  },
+  "Sooty Mould": {
+    "name": "Bệnh nấm đen",
+    "info": "Thông tin về bệnh nấm đen ở xoài đang được cập nhật."
+  },
+  "Gall Midge": {
+    "name": "Sâu đục nụ",
+    "info": "Thông tin về sâu đục nụ trên cây xoài đang được cập nhật."
+  },
+
+  // Corn
+  "Corn_(maize)___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Corn_(maize)___Common_rust_": {
+    "name": "Bệnh rỉ sắt thường",
+    "info": "Thông tin về bệnh rỉ sắt thường ở ngô đang được cập nhật."
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "name": "Bệnh khô vằn lá phía Bắc",
+    "info": "Thông tin về bệnh khô vằn lá phía Bắc ở ngô đang được cập nhật."
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "name": "Bệnh đốm lá Cercospora",
+    "info": "Thông tin về bệnh đốm lá Cercospora ở ngô đang được cập nhật."
+  },
+
+  // Banana
+  "Banana Fruit-Scarring Beetle": {
+    "name": "Sâu cắt vỏ quả chuối",
+    "info": "Thông tin về sâu cắt vỏ quả chuối đang được cập nhật."
+  },
+  "Black and Yellow Sigatoka": {
+    "name": "Bệnh Sigatoka đen và vàng",
+    "info": "Thông tin về bệnh Sigatoka đen và vàng đang được cập nhật."
+  },
+  "Banana Skipper Damage": {
+    "name": "Tổn thương do bướm nhảy",
+    "info": "Thông tin về tổn thương do bướm nhảy trên chuối đang được cập nhật."
+  },
+  "Chewing insect damage on banana leaf": {
+    "name": "Tổn thương cắn trên lá chuối",
+    "info": "Thông tin về tổn thương cắn trên lá chuối đang được cập nhật."
+  },
+  "Healthy Banana": {
+    "name": "Chuối khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Healthy Banana  leaf": {
+    "name": "Lá chuối khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Banana Split Peel": {
+    "name": "Nứt vỏ chuối",
+    "info": "Thông tin về nứt vỏ chuối đang được cập nhật."
+  },
+
+  // Grape
+  "Grape___Black_rot": {
+    "name": "Bệnh thối đen nho",
+    "info": "Thông tin về bệnh thối đen nho đang được cập nhật."
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "name": "Bệnh cháy lá nho (Isariopsis)",
+    "info": "Thông tin về bệnh cháy lá nho (Isariopsis) đang được cập nhật."
+  },
+  "Grape___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "name": "Bệnh Esca (mụn đen)",
+    "info": "Thông tin về bệnh Esca (mụn đen) đang được cập nhật."
+  },
+
+  // Pepper
+  "Pepper_bell___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Pepper_bell___Bacterial_spot": {
+    "name": "Bệnh đốm vi khuẩn",
+    "info": "Thông tin về bệnh đốm vi khuẩn trên ớt chuông đang được cập nhật."
+  },
+
+  // Tomato
+  "Tomato___Target_Spot": {
+    "name": "Bệnh đốm mục tiêu",
+    "info": "Thông tin về bệnh đốm mục tiêu trên cà chua đang được cập nhật."
+  },
+  "Tomato___Late_blight": {
+    "name": "Bệnh khô vằn muộn cà chua",
+    "info": "Thông tin về bệnh khô vằn muộn cà chua đang được cập nhật."
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "name": "Virus mozaic cà chua",
+    "info": "Thông tin về virus mozaic cà chua đang được cập nhật."
+  },
+  "Tomato___Leaf_Mold": {
+    "name": "Bệnh mốc lá",
+    "info": "Thông tin về bệnh mốc lá cà chua đang được cập nhật."
+  },
+  "Tomato___Bacterial_spot": {
+    "name": "Đốm vi khuẩn",
+    "info": "Thông tin về đốm vi khuẩn trên cà chua đang được cập nhật."
+  },
+  "Tomato___Early_blight": {
+    "name": "Bệnh khô vằn sớm cà chua",
+    "info": "Thông tin về bệnh khô vằn sớm cà chua đang được cập nhật."
+  },
+  "Tomato___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "name": "Virus cuốn lá vàng",
+    "info": "Thông tin về virus cuốn lá vàng trên cà chua đang được cập nhật."
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "name": "Nhện hai chấm",
+    "info": "Thông tin về nhện hai chấm trên cà chua đang được cập nhật."
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "name": "Bệnh đốm lá Septoria",
+    "info": "Thông tin về bệnh đốm lá Septoria trên cà chua đang được cập nhật."
+  },
+
+  // Mango_Fruit
+  "Alternaria": {
+    "name": "Bệnh Alternaria",
+    "info": "Thông tin về bệnh Alternaria trên quả xoài đang được cập nhật."
+  },
+  "Stem end Rot": {
+    "name": "Thối cuống",
+    "info": "Thông tin về thối cuống quả xoài đang được cập nhật."
+  },
+  "Black Mould Rot": {
+    "name": "Thối nấm đen",
+    "info": "Thông tin về thối nấm đen trên quả xoài đang được cập nhật."
+  },
+
+  // Orange
+  "Healthy_Leaf_Orange": {
+    "name": "Lá khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Citrus_Canker_Diseases_Leaf_Orange": {
+    "name": "Bệnh loét vỏ cam",
+    "info": "Thông tin về bệnh loét vỏ cam đang được cập nhật."
+  },
+  "Citrus_Nutrient_Deficiency_Yellow_Leaf_Orange": {
+    "name": "Lá vàng thiếu dinh dưỡng",
+    "info": "Thông tin về lá vàng thiếu dinh dưỡng ở cam đang được cập nhật."
+  },
+  "Greening": {
+    "name": "Bệnh greening",
+    "info": "Thông tin về bệnh greening trên cây cam đang được cập nhật."
+  },
+
+  // Peach
+  "Peach___healthy": {
+    "name": "Khỏe mạnh",
+    "info": "Hãy tiếp tục chăm sóc cây của bạn cẩn thận. Kết quả không phải lúc nào cũng chính xác tuyệt đối!"
+  },
+  "Peach___Bacterial_spot": {
+    "name": "Đốm vi khuẩn",
+    "info": "Thông tin về đốm vi khuẩn trên đào đang được cập nhật."
   }
 };
