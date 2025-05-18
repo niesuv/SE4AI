@@ -1,0 +1,18 @@
+# requirements.txt
+
+# Web framework (FastAPI)
+fastapi
+uvicorn[standard] # ASGI server for FastAPI
+
+# LLM SDKs
+google-generativeai # Gemini API
+# openai              # ChatGPT API
+
+# HTTP client
+requests
+
+# Environment variables
+python-dotenv
+
+# Search
+google-api-python-client # Google Custom Search Engine
