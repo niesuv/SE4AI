@@ -49,7 +49,7 @@ class _MainAppState extends ConsumerState<MainApp> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore), // <-- Icon cho HomePage()
-            label: 'Explore',          // <-- Đặt tên phù hợp
+            label: 'Weather',          // <-- Đặt tên phù hợp
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervisor_account_sharp),

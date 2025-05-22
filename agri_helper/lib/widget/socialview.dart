@@ -2,7 +2,6 @@ import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/widget/market_view.dart';
 import 'package:agri_helper/widget/nav_item.dart';
 import 'package:agri_helper/widget/news_view.dart';
-import 'package:agri_helper/widget/weather_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,7 +22,6 @@ class _SocialViewState extends ConsumerState<SocialView> {
     view = {
       "news": NewsView(),
       "market": MarketView(),
-      "weather": WeatherView(),
     };
   }
 
@@ -56,14 +54,7 @@ class _SocialViewState extends ConsumerState<SocialView> {
                     },
                     color:
                         _currentTab == 'market' ? Colors.pink : Colors.black),
-                NavItem(
-                    name: 'weather',
-                    icon: Icons.wb_sunny_outlined,
-                    onTap: () {
-                      changeTab("weather");
-                    },
-                    color:
-                        _currentTab == 'weather' ? Colors.pink : Colors.black),
+                
                 NavItem(
                     name: 'news',
                     icon: Icons.newspaper_outlined,
