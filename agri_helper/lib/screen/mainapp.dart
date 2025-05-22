@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/widget/home.dart';
+import 'package:agri_helper/ui/home_page.dart';
 
 class MainApp extends ConsumerStatefulWidget {
   MainApp({super.key});
@@ -22,7 +23,7 @@ class _MainAppState extends ConsumerState<MainApp> {
   @override
   void initState() {
     super.initState();
-    wid = [Home(), NoteView(), SocialView(), SettingView()];
+    wid = [Home(), NoteView(), HomePage(), SocialView(), SettingView()];
   }
 
   void onTapNav(int index) {
@@ -45,6 +46,10 @@ class _MainAppState extends ConsumerState<MainApp> {
           BottomNavigationBarItem(
             icon: Icon(Icons.edit_calendar_outlined),
             label: 'Notes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore), // <-- Icon cho HomePage()
+            label: 'Explore',          // <-- Đặt tên phù hợp
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervisor_account_sharp),
