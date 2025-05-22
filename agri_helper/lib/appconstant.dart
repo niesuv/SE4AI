@@ -9,3 +9,4 @@ final background = Color.fromARGB(255, 245, 245, 245);
 final apilua = 'https://plant-disease-api-service-326088373215.asia-southeast1.run.app/predict/';
 final apitintuc = 'https://avydyue6uf3nv6jfcpuysg2sjy0tykue.lambda-url.ap-southeast-1.on.aws/';
 final apiGoogleMapKey = dotenv.env["googlemap_api_key"];
+final apiWeatherKey = dotenv.env["weather_api_key"];
