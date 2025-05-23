@@ -55,6 +55,7 @@ coverage.xml
 .venv
 env/
 venv/
+myenv/
 ENV/
 env.bak
 venv.bak
@@ -68,3 +69,7 @@ venv.bak
 
 # MacOS
 .DS_Store
+
+# Ignore file
+.gitignore
+.dockerignore

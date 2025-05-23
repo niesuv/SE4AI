@@ -1,18 +1,18 @@
-# requirements.txt
+# LLM Libraries
+google-generativeai>=0.5.0
 
-# Web framework (FastAPI)
-fastapi
-uvicorn[standard] # ASGI server for FastAPI
+# Google API Client (for Custom Search)
+google-api-python-client>=2.0.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=0.7.0
 
-# LLM SDKs
-google-generativeai # Gemini API
-# openai              # ChatGPT API
+# Web Framework & Server
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
 
-# HTTP client
-requests
+# Environment & Configuration
+python-dotenv>=1.0.0
+pydantic>=2.0.0
 
-# Environment variables
-python-dotenv
-
-# Search
-google-api-python-client # Google Custom Search Engine
+# Utilities
+requests>=2.25.0
