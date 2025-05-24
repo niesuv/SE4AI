@@ -127,9 +127,14 @@ class Settings(BaseModel):
         super().__init__(**data)
         # Load prompts from files after Pydantic initialization
         self.basic_router_prompt = load_prompt_from_file(self.PROMPT_BASIC_ROUTER_FILE)
-        self.baseic_router_prompt = self.basic_router_prompt.replace(
-            "{{allowed_topics}}", ", ".join(self.agent.allowed_topics)
-        )
+        if self.agent.allowed_topics:
+            self.basic_router_prompt = self.basic_router_prompt.replace(
+                "{{allowed_topics}}", ", ".join(self.agent.allowed_topics)
+            )
+        else:
+            self.basic_router_prompt = self.basic_router_prompt.replace(
+                "{{allowed_topics}}", ""
+            )
 
         self.keyword_extraction_prompt = load_prompt_from_file(
             self.PROMPT_KEYWORD_EXTRACTION_FILE
