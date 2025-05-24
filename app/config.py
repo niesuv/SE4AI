@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from pydantic import BaseModel, SecretStr, Field
+from pydantic import BaseModel
 from typing import Optional, List
 
 # --- Load environment variables ---
@@ -43,7 +43,7 @@ class LLMConfig(BaseModel):
 class BasicLLMSettings(LLMConfig):
     """Settings for the basic LLM (router/simple tasks)."""
 
-    model_name: str = "gemini-1.0-pro"
+    model_name: str = "gemini-2.0-flash-lite"
     temperature: float = 0.5
     max_input_tokens: int = 2048
     max_output_tokens: int = 512
@@ -54,7 +54,7 @@ class BasicLLMSettings(LLMConfig):
 class AdvancedLLMSettings(LLMConfig):
     """Settings for the advanced LLM (RAG, complex tasks)."""
 
-    model_name: str = "gemini-1.5-pro-latest"
+    model_name: str = "gemini-2.5-pro-preview-05-06"
     temperature: float = 0.7
     max_input_tokens: int = 8192
     max_output_tokens: int = 8192
@@ -65,8 +65,8 @@ class AdvancedLLMSettings(LLMConfig):
 class SearchConfig(BaseModel):
     """Configuration for Search API."""
 
-    api_key: Optional[SecretStr] = Field(None, env="GOOGLE_CSE_API_KEY")
-    cse_id: Optional[str] = Field(None, env="GOOGLE_CSE_ID")
+    api_key: Optional[str] = os.getenv("GOOGLE_CSE_API_KEY")
+    cse_id: Optional[str] = os.getenv("GOOGLE_CSE_ID")
     max_results: int = 10
 
 
@@ -99,9 +99,7 @@ class Settings(BaseModel):
     # --- LLMs ---
 
     # API keys
-    gemini_api_key: Optional[SecretStr] = Field(None, env="GEMINI_API_KEY")
-    # openai_api_key: Optional[SecretStr] = Field(None, env="OPENAI_API_KEY")
-    # deepseek_api_key: Optional[SecretStr] = Field(None, env="DEEPSEEK_API_KEY")
+    gemini_api_key: Optional[str] = os.getenv("GEMINI_API_KEY")
 
     # LLM settings
     basic_llm: BasicLLMSettings = BasicLLMSettings()
@@ -127,22 +125,26 @@ class Settings(BaseModel):
         super().__init__(**data)
         # Load prompts from files after Pydantic initialization
         self.basic_router_prompt = load_prompt_from_file(self.PROMPT_BASIC_ROUTER_FILE)
-        if self.agent.allowed_topics:
-            self.basic_router_prompt = self.basic_router_prompt.replace(
-                "{{allowed_topics}}", ", ".join(self.agent.allowed_topics)
-            )
+        if self.basic_router_prompt:
+            if self.agent.allowed_topics:
+                self.basic_router_prompt = self.basic_router_prompt.replace(
+                    "{{allowed_topics}}", ", ".join(self.agent.allowed_topics)
+                )
+            else:
+                self.basic_router_prompt = self.basic_router_prompt.replace(
+                    "{{allowed_topics}}", ""
+                )
         else:
-            self.basic_router_prompt = self.basic_router_prompt.replace(
-                "{{allowed_topics}}", ""
+            print(
+                f"Warning: Basic router prompt file not found at {self.PROMPT_BASIC_ROUTER_FILE}"
             )
 
         self.keyword_extraction_prompt = load_prompt_from_file(
             self.PROMPT_KEYWORD_EXTRACTION_FILE
         )
-
         self.advanced_rag_prompt = load_prompt_from_file(self.PROMPT_ADVANCED_RAG_FILE)
 
-        # Simple validation for required API keys
+        # Validate required API keys
         if not self.gemini_api_key:
             print("Warning: GEMINI_API_KEY is not set in .env file.")
         if not self.search.api_key or not self.search.cse_id:

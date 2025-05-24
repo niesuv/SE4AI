@@ -73,3 +73,5 @@ venv.bak
 # Ignore file
 .gitignore
 .dockerignore
+idea.md
+genai.md
