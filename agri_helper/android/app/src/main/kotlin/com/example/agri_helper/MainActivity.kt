@@ -1,4 +1,4 @@
-package com.example.agri_helper
+package se4ai.agrihelper.android
 
 import io.flutter.embedding.android.FlutterActivity
 
