@@ -8,9 +8,15 @@ from typing import Optional, List
 # Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load environment
+# Load environment - only if .env file exists
 dotenv_path = BASE_DIR / ".env"
-load_dotenv(dotenv_path=dotenv_path)
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
+    print(f"Loaded environment variables from {dotenv_path}")
+else:
+    print(f"No .env file found at {dotenv_path}, using system environment variables")
+    # Still try to load from current directory or environment
+    load_dotenv()
 
 
 # --- Helper function to load prompts from files ---
@@ -67,7 +73,7 @@ class SearchConfig(BaseModel):
 
     api_key: Optional[str] = os.getenv("GOOGLE_CSE_API_KEY")
     cse_id: Optional[str] = os.getenv("GOOGLE_CSE_ID")
-    max_results: int = 10
+    max_results: int = 5
 
 
 class AgentConfig(BaseModel):
@@ -91,6 +97,16 @@ class AgentConfig(BaseModel):
 
     # Special response markers (can be useful for initial simple parsing)
     advanced_mode_marker: str = "<<[ADVANCED MODE]>>"
+    max_search_iterations: int = 5
+    initial_search_queries_count: int = 2
+    supplementary_queries_per_iteration_count: int = 2
+
+    # Optimization settings
+    use_optimized_agent: bool = True
+    max_parallel_scraping: int = 5
+    max_content_length_per_source: int = 1500
+    max_total_context_length: int = 6000
+    cache_ttl_seconds: int = 3600
 
 
 class Settings(BaseModel):
@@ -111,14 +127,18 @@ class Settings(BaseModel):
 
     # Prompt file paths (relative to the 'app' directory)
     PROMPT_BASIC_ROUTER_FILE: Optional[str] = "prompts/basic_router_prompt.md"
-    PROMPT_KEYWORD_EXTRACTION_FILE: Optional[str] = (
-        "prompts/keyword_extraction_prompt.md"
+    PROMPT_INITIAL_SEARCH_QUERY_FILE: Optional[str] = (
+        "prompts/initial_search_query_prompt.md"
+    )
+    PROMPT_INFORMATION_EVALUATION_AND_REFINEMENT_FILE: Optional[str] = (
+        "prompts/information_evaluation_and_refinement_prompt.md"
     )
     PROMPT_ADVANCED_RAG_FILE: Optional[str] = "prompts/advanced_rag_prompt.md"
 
     # Loaded prompts
     basic_router_prompt: Optional[str] = None
-    keyword_extraction_prompt: Optional[str] = None
+    initial_search_query_prompt: Optional[str] = None
+    information_evaluation_and_refinement_prompt: Optional[str] = None
     advanced_rag_prompt: Optional[str] = None
 
     def __init__(self, **data):
@@ -139,18 +159,34 @@ class Settings(BaseModel):
                 f"Warning: Basic router prompt file not found at {self.PROMPT_BASIC_ROUTER_FILE}"
             )
 
-        self.keyword_extraction_prompt = load_prompt_from_file(
-            self.PROMPT_KEYWORD_EXTRACTION_FILE
+        self.initial_search_query_prompt = load_prompt_from_file(
+            self.PROMPT_INITIAL_SEARCH_QUERY_FILE
         )
-        self.advanced_rag_prompt = load_prompt_from_file(self.PROMPT_ADVANCED_RAG_FILE)
-
-        # Validate required API keys
+        self.information_evaluation_and_refinement_prompt = load_prompt_from_file(
+            self.PROMPT_INFORMATION_EVALUATION_AND_REFINEMENT_FILE
+        )
+        self.advanced_rag_prompt = load_prompt_from_file(
+            self.PROMPT_ADVANCED_RAG_FILE
+        )  # Validate required API keys
         if not self.gemini_api_key:
-            print("Warning: GEMINI_API_KEY is not set in .env file.")
-        if not self.search.api_key or not self.search.cse_id:
             print(
-                "Warning: GOOGLE_CSE_API_KEY or GOOGLE_CSE_ID is not set in .env file for search functionality."
+                "Warning: GEMINI_API_KEY is not set. Please set it as an environment variable."
             )
+            print(
+                "Available environment variables starting with GEMINI:",
+                [key for key in os.environ.keys() if key.startswith("GEMINI")],
+            )
+        else:
+            print("✓ GEMINI_API_KEY is loaded successfully")
+
+        if not self.search.api_key or not self.search.cse_id:
+            print("Warning: GOOGLE_CSE_API_KEY or GOOGLE_CSE_ID is not set.")
+            print(
+                "Available environment variables starting with GOOGLE:",
+                [key for key in os.environ.keys() if key.startswith("GOOGLE")],
+            )
+        else:
+            print("✓ Google Search API keys are loaded successfully")
 
 
 settings = Settings()
