@@ -138,6 +138,71 @@ class _HomeState extends ConsumerState<NoteView> {
     }
   }
 
+  void _updateNote(int index) async {
+    final note = notes[index];
+    final result = await showModalBottomSheet<Map<String, dynamic>>(
+      useSafeArea: false,
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return FormNote(
+          editMode: true,
+          initialTitle: note.title,
+          initialContent: note.content,
+        );
+      },
+    );
+
+    if (result != null) {
+      try {
+        // Find and update the document in Firestore
+        QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection("notes")
+            .where("userid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+            .where("title", isEqualTo: note.title)
+            .where("content", isEqualTo: note.content)
+            .get();
+
+        if (querySnapshot.docs.isNotEmpty) {
+          await querySnapshot.docs.first.reference.update({
+            "title": result["title"],
+            "content": result["content"],
+            "date": Timestamp.fromDate(result["date"]),
+          });
+
+          // Update local state
+          ref.read(NoteProvider.notifier).updateNote(
+              index,
+              Note(result["title"], result["content"], result["date"]));
+
+          setState(() {
+            notes = ref.read(NoteProvider);
+          });
+
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Cập nhật ghi chú thành công'),
+                backgroundColor: Colors.green,
+              ),
+            );
+          }
+        } else {
+          throw Exception('Không tìm thấy ghi chú để cập nhật');
+        }
+      } catch (error) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Lỗi: Không thể cập nhật ghi chú. ${error.toString()}'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -207,6 +272,13 @@ class _HomeState extends ConsumerState<NoteView> {
                                 ),
                               ],
                             ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.blue,
+                            ),
+                            onPressed: () => _updateNote(index),
                           ),
                           IconButton(
                             icon: Icon(

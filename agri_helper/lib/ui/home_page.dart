@@ -7,7 +7,7 @@ import 'package:agri_helper/components/weather_item.dart';
 import 'package:agri_helper/constants.dart';
 import 'package:agri_helper/ui/detail_page.dart';
 import 'package:agri_helper/appconstant.dart';
-
+import 'package:geolocator/geolocator.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _cityController = TextEditingController();
   final Constants _constants = Constants();
 
-  static String API_KEY = apiWeatherKey ?? ''; //Paste Your API Here
+  static String API_KEY = apiWeatherKey ?? '';
 
-  String location = 'London'; //Default location
+  String location = ''; // Xóa giá trị mặc định London
   String weatherIcon = 'heavycloudy.png';
   int temperature = 0;
   int windSpeed = 0;
@@ -36,13 +36,66 @@ class _HomePageState extends State<HomePage> {
 
   List hourlyWeatherForecast = [];
   List dailyWeatherForecast = [];
-
   String currentWeatherStatus = '';
 
   //API Call
   String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=" +
       API_KEY +
       "&days=7&q=";
+
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Vui lòng bật dịch vụ vị trí')));
+      return false;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Quyền truy cập vị trí bị từ chối')));
+        return false;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Quyền truy cập vị trí bị từ chối vĩnh viễn')));
+      return false;
+    }
+
+    return true;
+  }
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission();
+    if (!hasPermission) {
+      setState(() {
+        location = 'London'; // Fallback to London if permission denied
+        fetchWeatherData(location);
+      });
+      return;
+    }
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      // Get weather for current location
+      fetchWeatherData('${position.latitude},${position.longitude}');
+    } catch (e) {
+      debugPrint(e.toString());
+      setState(() {
+        location = 'London'; // Fallback to London if error
+        fetchWeatherData(location);
+      });
+    }
+  }
 
   void fetchWeatherData(String searchText) async {
     try {
@@ -100,8 +153,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    fetchWeatherData(location);
     super.initState();
+    _getCurrentPosition(); // Lấy vị trí hiện tại khi khởi tạo
   }
 
   @override

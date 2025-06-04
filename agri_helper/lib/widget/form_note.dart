@@ -6,7 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FormNote extends ConsumerStatefulWidget {
-  FormNote({super.key});
+  final bool editMode;
+  final String? initialTitle;
+  final String? initialContent;
+
+  FormNote({
+    super.key,
+    this.editMode = false,
+    this.initialTitle,
+    this.initialContent,
+  });
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
     return _FormNoteState();
@@ -15,42 +25,71 @@ class FormNote extends ConsumerStatefulWidget {
 
 class _FormNoteState extends ConsumerState<FormNote> {
   final _formKey = GlobalKey<FormState>();
+  final _titleController = TextEditingController();
+  final _contentController = TextEditingController();
 
-  var _title, _content;
+  @override
+  void initState() {
+    super.initState();
+    if (widget.editMode) {
+      _titleController.text = widget.initialTitle ?? '';
+      _contentController.text = widget.initialContent ?? '';
+    }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
+
   void submitForm() {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
-      _formKey.currentState!.save();
       final date = DateTime.now();
-      ref
-          .read(NoteProvider.notifier)
-          .addNote(Note(_title, _content, date), addFirst: true);
-      FirebaseFirestore.instance.collection("notes").add({
-        "userid": FirebaseAuth.instance.currentUser!.uid,
-        "title": _title,
-        "date": Timestamp.fromDate(date),
-        "content": _content
-      });
-      Navigator.of(context).pop();
+      
+      if (widget.editMode) {
+        // Return data for update
+        Navigator.of(context).pop({
+          "title": _titleController.text,
+          "content": _contentController.text,
+          "date": date,
+        });
+      } else {
+        // Add new note
+        ref.read(NoteProvider.notifier).addNote(
+          Note(_titleController.text, _contentController.text, date), 
+          addFirst: true
+        );
+        
+        FirebaseFirestore.instance.collection("notes").add({
+          "userid": FirebaseAuth.instance.currentUser!.uid,
+          "title": _titleController.text,
+          "date": Timestamp.fromDate(date),
+          "content": _contentController.text
+        });
+        Navigator.of(context).pop();
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.fromLTRB(
+          15, 15, 15, MediaQuery.of(context).viewInsets.bottom + 15),
       color: Colors.white,
       child: Form(
         key: _formKey,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              controller: _titleController,
               decoration: InputDecoration(
                 labelText: "Tiêu đề",
               ),
-              onSaved: (newValue) {
-                _title = newValue!;
-              },
               validator: (value) {
                 if (value == null || value.trim().length == 0)
                   return "Vui lòng không bỏ trống tiêu đề";
@@ -58,22 +97,18 @@ class _FormNoteState extends ConsumerState<FormNote> {
               },
             ),
             TextFormField(
+              controller: _contentController,
               maxLines: 9,
               decoration: InputDecoration(
                 labelText: "Nội dung",
               ),
-              onSaved: (newValue) {
-                _content = newValue!;
-              },
               validator: (value) {
                 if (value == null || value.trim().length == 0)
                   return "Vui lòng không bỏ trống nội dung!";
                 return null;
               },
             ),
-            Expanded(
-                child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
@@ -88,12 +123,12 @@ class _FormNoteState extends ConsumerState<FormNote> {
                 TextButton(
                   onPressed: submitForm,
                   child: Text(
-                    "Thêm",
+                    widget.editMode ? "Cập nhật" : "Thêm",
                     style: TextStyle(fontSize: 18, color: Colors.green),
                   ),
                 )
               ],
-            ))
+            )
           ],
         ),
       ),
