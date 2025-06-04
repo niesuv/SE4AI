@@ -17,6 +17,14 @@ class NoteNotifier extends StateNotifier<List<Note>> {
     ];
   }
 
+  void updateNote(int index, Note updatedNote) {
+    state = [
+      ...state.sublist(0, index),
+      updatedNote,
+      ...state.sublist(index + 1),
+    ];
+  }
+
   void clear() {
     state.clear();
   }
