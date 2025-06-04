@@ -10,6 +10,13 @@ class NoteNotifier extends StateNotifier<List<Note>> {
       state = [note, ...state];
   }
 
+  void deleteNote(int index) {
+    state = [
+      ...state.sublist(0, index),
+      ...state.sublist(index + 1),
+    ];
+  }
+
   void clear() {
     state.clear();
   }

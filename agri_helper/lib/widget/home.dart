@@ -33,11 +33,25 @@ class _HomeState extends ConsumerState<Home> {
   String content = '';
   bool isLoading = false;
 
-  final List<String> fruitTypes = [
-    'apple', 'strawberry', 'rice', 'potato', 'durian', 'mango',
-    'corn', 'banana', 'grape', 'pepper', 'tomato', 'mango_Fruit', 'orange', 'peach'
-  ];
-  String selectedFruit = 'rice';
+  // Plant type mapping Vietnamese - English
+  final Map<String, String> plantTypeMap = {
+    'Cây lúa': 'rice',
+    'Táo': 'apple',
+    'Dâu tây': 'strawberry',
+    'Khoai tây': 'potato',
+    'Sầu riêng': 'durian',
+    'Xoài': 'mango',
+    'Ngô': 'corn',
+    'Chuối': 'banana',
+    'Nho': 'grape',
+    'Ớt': 'pepper',
+    'Cà chua': 'tomato',
+    'Cam': 'orange',
+    'Đào': 'peach'
+  };
+
+  String selectedFruitDisplay = 'Cây lúa'; // For display
+  String get selectedFruit => plantTypeMap[selectedFruitDisplay] ?? 'rice'; // For API
 
   @override
   void initState() {
@@ -125,178 +139,316 @@ class _HomeState extends ConsumerState<Home> {
           children: [
             // User info
             UserInfoCard(username: username),
-            const SizedBox(height: 18),
+            const SizedBox(height: 24),
 
-            // Fruit Dropdown
-            Text('Chọn loại cây:',
-                style: GoogleFonts.roboto(
-                    fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black87)),
-            const SizedBox(height: 8),
-            DropdownButton2<String>(
-              isExpanded: true,
-              value: selectedFruit,
-              items: fruitTypes
-                  .map((fruit) => DropdownMenuItem(
-                        value: fruit,
-                        child: Text(
-                          fruit,
-                          style: GoogleFonts.poppins(fontSize: 16),
-                        ),
-                      ))
-                  .toList(),
-              buttonStyleData: ButtonStyleData(
-                height: 48,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.white,
-                  border: Border.all(color: Colors.blueGrey.shade100, width: 1),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.blueGrey.withOpacity(0.08),
-                        blurRadius: 5,
-                        offset: Offset(0, 3))
-                  ],
-                ),
+            // Plant Type Selection Section
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                  ),
+                ],
               ),
-              dropdownStyleData: DropdownStyleData(
-                maxHeight: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  color: Colors.white,
-                ),
-              ),
-              iconStyleData: IconStyleData(
-                icon: Icon(Icons.arrow_drop_down_rounded, size: 28),
-              ),
-              onChanged: (value) {
-                if (value != null) setState(() => selectedFruit = value);
-              },
-            ),
-            const SizedBox(height: 22),
-
-            // Title
-            Text('Chẩn đoán bệnh lúa',
-                style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    color: Colors.teal[800])),
-            const SizedBox(height: 10),
-
-            // Image picker
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
-                child: Column(
-                  children: [
-                    _imagePick == null
-                        ? Column(
-                            children: [
-                              Lottie.asset('assets/lottie/upload.json', width: 120, repeat: true),
-                              Text("Vui lòng chọn ảnh cây cần kiểm tra",
-                                  style: GoogleFonts.roboto(color: Colors.grey[700])),
-                            ],
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.file(_imagePick!, height: 140, fit: BoxFit.cover),
-                          ),
-                    ImagePickerWidget(
-                      onPickImage: (img) {
-                        setState(() => _imagePick = img);
-                      },
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Chọn loại cây:',
+                    style: GoogleFonts.roboto(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.teal[800],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 12),
+                  DropdownButton2<String>(
+                    isExpanded: true,
+                    value: selectedFruitDisplay,
+                    items: plantTypeMap.keys
+                        .map((name) => DropdownMenuItem(
+                              value: name,
+                              child: Text(
+                                name,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                    buttonStyleData: ButtonStyleData(
+                      height: 50,
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.teal.shade100),
+                        color: Colors.white,
+                      ),
+                    ),
+                    dropdownStyleData: DropdownStyleData(
+                      maxHeight: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.white,
+                      ),
+                    ),
+                    iconStyleData: IconStyleData(
+                      icon: Icon(Icons.keyboard_arrow_down_rounded, size: 28),
+                      iconEnabledColor: Colors.teal,
+                    ),
+                    menuItemStyleData: MenuItemStyleData(
+                      height: 45,
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                    ),
+                    onChanged: (value) {
+                      if (value != null) setState(() => selectedFruitDisplay = value);
+                    },
+                  ),
+                ],
               ),
             ),
+            const SizedBox(height: 24),
 
-            // Submit button
-            const SizedBox(height: 18),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                icon: Icon(Icons.science_outlined),
-                label: Text('Bắt đầu phân tích',
-                    style: GoogleFonts.roboto(fontSize: 19, fontWeight: FontWeight.w500)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal[700],
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+            // Disease Diagnosis Section
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 0,
                   ),
-                  elevation: 2,
-                ),
-                onPressed: isLoading ? null : _submitImage,
+                ],
               ),
-            ),
-
-            // Loading
-            if (isLoading)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 18.0),
-                child: Center(
-                  child: SpinKitWave(
-                    color: Colors.teal[700]!,
-                    size: 40.0,
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Chẩn đoán bệnh',
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                      color: Colors.teal[800],
+                    ),
                   ),
-                ),
-              ),
+                  SizedBox(height: 16),
+                    // Image picker
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade50,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Colors.teal.shade50,
+                        width: 1,
+                      ),
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            final img = await showModalBottomSheet<File>(
+                              context: context,
+                              builder: (ctx) => ImagePickerWidget(
+                                onPickImage: (img) {
+                                  Navigator.of(ctx).pop(img);
+                                },
+                              ),
+                            );
+                            if (img != null) {
+                              setState(() => _imagePick = img);
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.white,
+                            ),
+                            child: _imagePick == null
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.asset(
+                                        'assets/lottie/upload.json',
+                                        width: 150,
+                                        repeat: true,
+                                      ),
+                                      Text(
+                                        "Nhấn để chọn ảnh cây cần kiểm tra",
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey[700],
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(
+                                      _imagePick!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-            // Result
-            if (content.isNotEmpty && !isLoading)
-              Card(
-                elevation: 3,
-                margin: const EdgeInsets.only(top: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: content == 'healthy'
-                                ? const Color.fromARGB(255, 32, 209, 65)
-                                : Colors.amber,
-                            foregroundColor: content == 'healthy'
-                                ? Colors.white
-                                : const Color.fromARGB(255, 194, 41, 27),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            elevation: 1,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Kết quả: ${info[content]?["name"] ?? content}',
-                            style: GoogleFonts.roboto(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
+                  SizedBox(height: 20),
+
+                  // Submit button
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      icon: Icon(Icons.science_outlined),
+                      label: Text(
+                        'Bắt đầu phân tích',
+                        style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      if (info[content]?['info'] != null)
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          margin: const EdgeInsets.only(top: 14),
-                          decoration: BoxDecoration(
-                            color: Colors.teal[50],
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            info[content]!['info']!,
-                            softWrap: true,
-                            style: GoogleFonts.roboto(fontSize: 16, color: Colors.black87),
-                          ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[700],
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
+                        elevation: 1,
+                      ),
+                      onPressed: isLoading ? null : _submitImage,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Loading indicator
+            if (isLoading)
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 24),
+                child: Center(
+                  child: Column(
+                    children: [
+                      SpinKitWave(
+                        color: Colors.teal[700]!,
+                        size: 40.0,
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'Đang phân tích...',
+                        style: GoogleFonts.roboto(
+                          color: Colors.teal[700],
+                          fontSize: 16,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-            const SizedBox(height: 20),
+
+            // Result section
+            if (content.isNotEmpty && !isLoading)
+              Container(
+                margin: EdgeInsets.only(top: 24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      blurRadius: 10,
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Kết quả phân tích',
+                      style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.teal[800],
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: content == 'healthy'
+                            ? Colors.green.shade50
+                            : Colors.orange.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: content == 'healthy'
+                              ? Colors.green.shade200
+                              : Colors.orange.shade200,
+                        ),
+                      ),
+                      child: Text(
+                        'Kết quả: ${info[content]?["name"] ?? content}',
+                        style: GoogleFonts.roboto(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: content == 'healthy'
+                              ? Colors.green.shade700
+                              : Colors.orange.shade900,
+                        ),
+                      ),
+                    ),
+                    if (info[content]?['info'] != null) ...[
+                      SizedBox(height: 16),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.teal.shade50,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Thông tin chi tiết:',
+                              style: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.teal[800],
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              info[content]!['info']!,
+                              style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                color: Colors.black87,
+                                height: 1.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
           ],
         ),
       ),

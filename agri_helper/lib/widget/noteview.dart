@@ -70,6 +70,74 @@ class _HomeState extends ConsumerState<NoteView> {
     });
   }
 
+  void _deleteNote(int index) async {
+    // Show confirmation dialog
+    bool? shouldDelete = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Xác nhận xóa'),
+        content: Text('Bạn có chắc chắn muốn xóa ghi chú này không?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(
+              'Xóa',
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldDelete != true) return;
+
+    // Get the note's title to query Firestore
+    final noteTitle = notes[index].title;
+    final noteContent = notes[index].content;
+
+    // Delete from Firestore
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection("notes")
+          .where("userid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .where("title", isEqualTo: noteTitle)
+          .where("content", isEqualTo: noteContent)
+          .get();
+
+      for (var doc in querySnapshot.docs) {
+        await doc.reference.delete();
+      }
+
+      // Update local state
+      ref.read(NoteProvider.notifier).deleteNote(index);
+      setState(() {
+        notes = ref.read(NoteProvider);
+      });
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Xóa ghi chú thành công'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Lỗi: Không thể xóa ghi chú. ${error.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -112,27 +180,40 @@ class _HomeState extends ConsumerState<NoteView> {
                     elevation: 7,
                     child: Container(
                       padding: EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          Text(
-                            "${notes[index].title}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${notes[index].title}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 15),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${DateFormat.yMd().format(notes[index].dateTime)}",
+                                  style: TextStyle(fontSize: 15),
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${notes[index].content}",
+                                  style: TextStyle(fontSize: 15),
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(
-                            "${DateFormat.yMd().format(notes[index].dateTime)}",
-                            style: TextStyle(fontSize: 15),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            "${notes[index].content}",
-                            style: TextStyle(fontSize: 15),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () => _deleteNote(index),
                           ),
                         ],
                       ),

@@ -18,6 +18,7 @@ class _ChangeInfomationViewState extends ConsumerState<ChangeInfomationView> {
   var _phoneNumber = "";
   var _username = "";
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -26,19 +27,52 @@ class _ChangeInfomationViewState extends ConsumerState<ChangeInfomationView> {
     _username = ref.read(UserProvider)["username"]!;
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     FocusScope.of(context).unfocus();
     final valid = _formKey.currentState!.validate();
     if (valid) {
-      _formKey.currentState!.save();
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .update({"username": _username, "phone": _phoneNumber}).then((value) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        _formKey.currentState!.save();
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .update({
+          "username": _username,
+          "phone": _phoneNumber
+        });
+
         ref.read(UserProvider.notifier).setUsername(_username);
         ref.read(UserProvider.notifier).setphone(_phoneNumber);
-      });
-      Navigator.of(context).pop();
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Cập nhật thông tin thành công'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          Navigator.of(context).pop();
+        }
+      } catch (error) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Lỗi: Không thể cập nhật thông tin. ${error.toString()}'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      }
     }
   }
 
@@ -117,8 +151,7 @@ class _ChangeInfomationViewState extends ConsumerState<ChangeInfomationView> {
                               return "Vui long Nhap dung so dien thoai it nhat 10 so";
                             return null;
                           },
-                        ),
-                        Container(
+                        ),                        Container(
                           margin: EdgeInsets.only(top: 40),
                           width: double.infinity,
                           height: 60,
@@ -127,11 +160,20 @@ class _ChangeInfomationViewState extends ConsumerState<ChangeInfomationView> {
                               backgroundColor: buttonBack,
                               foregroundColor: Colors.white,
                             ),
-                            onPressed: _submitForm,
-                            child: Text(
-                              "Lưu thay đổi",
-                              style: TextStyle(fontSize: 20),
-                            ),
+                            onPressed: _isLoading ? null : _submitForm,
+                            child: _isLoading
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(
+                                    "Lưu thay đổi",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                           ),
                         ),
                       ],
