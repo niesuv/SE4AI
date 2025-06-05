@@ -33,6 +33,22 @@ def resize_img(img_path: str) -> ndarray:
 
 # ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- ..
 
+def resize_img_torch(img_path: str) -> ndarray:
+    image = Image.open(img_path).convert("RGB")
+
+    # Resize to 256x256 and convert to tensor
+    transform = transforms.Compose([
+        transforms.Resize((256, 256)),  # <- Resize here
+        transforms.ToTensor(),  # Converts to [0, 1] range and CHW format
+    ])
+
+    # Apply transform
+    tensor = transform(image).unsqueeze(0).to(dtype=torch.float32)
+    return tensor
+
+
+# ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- ..
+
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
     return torch.tensor(torch.sum(preds == labels).item() / len(preds))
@@ -104,6 +120,12 @@ def fit_OneCycle(epochs, max_lr, model, train_loader, val_loader, weight_decay=0
     return history
 
 
+def ODIN(predict_tensor, T=10000, epsilon=0.0014, delta=0.1):
+    pass
+
+def ODIN_tune():
+    pass
+
 # ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- .. ... . ....- .- ..
 def handle_output(predict_tensor: ndarray, fruit: str = None) -> dict:
     """
@@ -124,7 +146,32 @@ def handle_output(predict_tensor: ndarray, fruit: str = None) -> dict:
 
     fruit_predicted_prob = nn.Softmax(dim=-1)(torch.tensor(chosen_fruit))
     out = {'predicted_disease': (this_fruit[torch.argmax(fruit_predicted_prob)],
-                                 (torch.max(fruit_predicted_prob)*100).tolist()),
-           'prob': dict(zip(this_fruit, (fruit_predicted_prob[0]*100).tolist()))}
+                                 (torch.max(fruit_predicted_prob) * 100).tolist()),
+           'prob': dict(zip(this_fruit, (fruit_predicted_prob[0] * 100).tolist()))}
 
     return out
+
+# def handle_output(predict_tensor: ndarray, fruit: str = None) -> dict:
+#     if isinstance(predict_tensor, ndarray):
+#         predict_tensor = torch.tensor(predict_tensor)
+#
+#     softmax = nn.Softmax(dim=-1)
+#     probs = softmax(predict_tensor)
+#     if fruit is not None:
+#         logits = probs[:, disease_index[fruit]]
+#         class_names = disease_name[fruit]
+#     else:
+#         logits = probs
+#         class_names = all_labels
+#
+#     max_prob = torch.max(logits).item()
+#     is_leaf = max_prob >= 0.8
+#
+#     predicted_class = class_names[torch.argmax(logits).item()]
+#     prob_dict = dict(zip(class_names, (probs[0] * 100).tolist()))
+#
+#     return {
+#         'predicted_disease': (predicted_class, max_prob * 100),
+#         'prob': prob_dict,
+#         'is_leaf': is_leaf
+#     }

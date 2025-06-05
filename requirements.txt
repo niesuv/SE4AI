@@ -177,11 +177,11 @@ nibabel==5.3.2
 ninja==1.11.1.1
 nipype==1.8.6
 nltk==3.9.1
-numpy==1.24.3
+numpy~=1.26.4
 oauthlib==3.2.2
 olefile==0.47
 oletools==0.60.2
-onnxruntime==1.20.0
+onnxruntime~=1.21.0
 open-webui==0.3.35
 openai==1.54.4
 opencv-python==4.10.0.84
@@ -213,7 +213,7 @@ pcodedmp==1.2.6
 peewee==3.17.6
 peewee-migrate==1.12.2
 pexpect==4.9.0
-Pillow==10.0.1
+Pillow~=10.4.0
 platformdirs==4.3.6
 pluggy==1.5.0
 posthog==3.7.0
@@ -321,9 +321,9 @@ threadpoolctl==3.2.0
 tiktoken==0.8.0
 tinycss2==1.4.0
 tokenizers==0.19.1
-torch==2.4.1
+torch~=2.6.0
 torchaudio==2.4.1
-torchvision==0.19.1
+torchvision~=0.21.0
 tornado==6.4.1
 tqdm==4.67.0
 traitlets==5.14.3
@@ -361,3 +361,5 @@ xxhash==3.5.0
 yarl==1.17.1
 youtube-transcript-api==0.6.2
 zipp==3.20.2
+
+google~=3.0.0
