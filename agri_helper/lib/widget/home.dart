@@ -103,7 +103,11 @@ class _HomeState extends ConsumerState<Home> {
         final dynamic pd = jsonMap['predicted_disease'];
         String diseaseName = '';
         if (pd is List && pd.isNotEmpty) {
-          diseaseName = pd[0].toString();
+          if (pd[0].toString() == "no") {
+            diseaseName = "Ảnh không hợp lệ";
+          } else {
+            diseaseName = pd[0].toString();
+          }
         }
         setState(() {
           content = diseaseName;
@@ -414,7 +418,7 @@ class _HomeState extends ConsumerState<Home> {
                         ),
                       ),
                     ),
-                    if (info[content]?['info'] != null) ...[
+                    if (info[content]?['info'] != null && content != "Ảnh không hợp lệ") ...[
                       SizedBox(height: 16),
                       Container(
                         padding: EdgeInsets.all(16),
