@@ -7,9 +7,11 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
+  flutter_typeahead: ^4.1.1
   flutter:
     sdk: flutter
-
+  image: ^3.2.2
+  path: ^1.8.2
   flutter_riverpod: ^2.4.10
   firebase_auth: ^5.5.2
   firebase_core: ^3.13.0
@@ -44,3 +46,4 @@ flutter:
     - .env
     - assets/
     - assets/lottie/
+    - assets/final_2_with_thumbs.json

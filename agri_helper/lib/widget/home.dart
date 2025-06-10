@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/benh_lua.dart';
 import 'package:agri_helper/provider/user_provider.dart';
-import 'package:agri_helper/widget/ImagePickerWidget.dart';
+import 'package:agri_helper/widget/imagepickerwidget.dart';
 import 'package:agri_helper/widget/userinfo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -6,9 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/widget/home.dart';
 import 'package:agri_helper/ui/home_page.dart';
+import 'package:agri_helper/screen/disease_wiki_screen.dart';
 
 class MainApp extends ConsumerStatefulWidget {
-  MainApp({super.key});
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
@@ -18,12 +19,19 @@ class MainApp extends ConsumerStatefulWidget {
 
 class _MainAppState extends ConsumerState<MainApp> {
   int selectedIndex = 0;
-  var wid;
+  late final List<Widget> wid;
 
   @override
   void initState() {
     super.initState();
-    wid = [Home(), NoteView(), HomePage(), SocialView(), SettingView()];
+    wid = [
+      Home(),
+      NoteView(),
+      HomePage(),
+      const DiseaseWikiScreen(), // Thêm Wiki vào đây
+      SocialView(),
+      SettingView(),
+    ];
   }
 
   void onTapNav(int index) {
@@ -34,11 +42,14 @@ class _MainAppState extends ConsumerState<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final currentView;
-    currentView = wid[selectedIndex];
     return Scaffold(
+      body: wid[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        currentIndex: selectedIndex,
+        selectedItemColor: buttonBack,
+        unselectedItemColor: Colors.black,
+        onTap: onTapNav,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -48,8 +59,12 @@ class _MainAppState extends ConsumerState<MainApp> {
             label: 'Notes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore), // <-- Icon cho HomePage()
-            label: 'Weather',          // <-- Đặt tên phù hợp
+            icon: Icon(Icons.explore),
+            label: 'Weather',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_florist),
+            label: 'Wiki', // Tab mới
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervisor_account_sharp),
@@ -58,14 +73,10 @@ class _MainAppState extends ConsumerState<MainApp> {
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-          )
+          ),
         ],
-        currentIndex: selectedIndex,
-        selectedItemColor: buttonBack,
-        unselectedItemColor: Colors.black,
-        onTap: onTapNav,
+        type: BottomNavigationBarType.fixed,
       ),
-      body: currentView,
     );
   }
 }
