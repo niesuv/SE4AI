@@ -1,3 +1,5 @@
+// lib/screen/mainapp.dart
+
 import 'package:agri_helper/widget/noteview.dart';
 import 'package:agri_helper/widget/setting.dart';
 import 'package:agri_helper/widget/socialview.dart';
@@ -7,17 +9,17 @@ import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/widget/home.dart';
 import 'package:agri_helper/ui/home_page.dart';
 import 'package:agri_helper/screen/disease_wiki_screen.dart';
+import 'package:agri_helper/screen/chat_bot_screen.dart';
 
 class MainApp extends ConsumerStatefulWidget {
   const MainApp({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() {
-    return _MainAppState();
-  }
+  ConsumerState<MainApp> createState() => _MainAppState();
 }
 
-class _MainAppState extends ConsumerState<MainApp> {
+class _MainAppState extends ConsumerState<MainApp>
+    with AutomaticKeepAliveClientMixin {
   int selectedIndex = 0;
   late final List<Widget> wid;
 
@@ -28,27 +30,35 @@ class _MainAppState extends ConsumerState<MainApp> {
       Home(),
       NoteView(),
       HomePage(),
-      const DiseaseWikiScreen(), // Thêm Wiki vào đây
+      const DiseaseWikiScreen(),
+      const ChatBotScreen(),
       SocialView(),
       SettingView(),
     ];
   }
 
   void onTapNav(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+    setState(() => selectedIndex = index);
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-      body: wid[selectedIndex],
+      backgroundColor: const Color(0xFFF2F3F7),
+      body: IndexedStack(
+        index: selectedIndex,
+        children: wid,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         selectedItemColor: buttonBack,
         unselectedItemColor: Colors.black,
         onTap: onTapNav,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -64,7 +74,11 @@ class _MainAppState extends ConsumerState<MainApp> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_florist),
-            label: 'Wiki', // Tab mới
+            label: 'Wiki',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.smart_toy),
+            label: 'Chat',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervisor_account_sharp),
@@ -75,7 +89,6 @@ class _MainAppState extends ConsumerState<MainApp> {
             label: 'Settings',
           ),
         ],
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }
