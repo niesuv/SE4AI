@@ -46,4 +46,6 @@ flutter:
     - .env
     - assets/
     - assets/lottie/
+    - assets/final_2.json
     - assets/final_2_with_thumbs.json
+    - assets/plants/
