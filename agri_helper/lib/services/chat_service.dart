@@ -1,5 +1,4 @@
-// lib/services/chat_service.dart
-
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -20,7 +19,7 @@ class ChatService {
     const String modelId = 'gemini-2.5-flash-preview-05-20';
 
     final systemPrompt = '''
-    You are Agrimini, an AI assistant and a world-class expert in the field of agriculture. Your persona is knowledgeable, reliable, and helpful. Your entire purpose is to assist users with agricultural inquiries.
+You are Agrimini, an AI assistant and a world-class expert in the field of agriculture. Your persona is knowledgeable, reliable, and helpful. Your entire purpose is to assist users with agricultural inquiries.
 
 Your core directive is to provide accurate, concise, and actionable answers.
 
@@ -41,8 +40,8 @@ Strictly adhere to the following rules:
         {'role': 'user', 'parts': [{'text': question}]},
       ],
       'generationConfig': {
-        'temperature': 0.2,
-        'maxOutputTokens': 1024,  // tăng lên để tránh cắt chữ
+        'temperature': 0.5,
+        'maxOutputTokens': 9000,
       },
     };
 
@@ -53,23 +52,22 @@ Strictly adhere to the following rules:
         data: payload,
       );
 
-      // Lấy danh sách candidates, rồi ghép hết các parts lại
       final cands = resp.data['candidates'] as List<dynamic>?;
       if (cands != null && cands.isNotEmpty) {
         final parts = cands[0]['content']['parts'] as List<dynamic>?;
         if (parts != null && parts.isNotEmpty) {
-          // Ghép tất cả parts thành 1 chuỗi
-          final text = parts.map((p) => p['text'] as String).join(' ');
-          return text;
+          return parts.map((p) => p['text'] as String).join().trim();
         }
       }
-      // Không có response như mong muốn, trả plain text trống
-      return '';
+      return 'Không nhận được phản hồi từ model.';
     } on DioException catch (e) {
-      // Trả lời thật plain text, không JSON
-      return e.message ?? 'Đã xảy ra lỗi khi gọi API.';
+      if (e.error is SocketException) {
+        return "Kiểm tra lại đường truyền mạng của bạn";
+      }
+      final msg = e.response?.data?['error']?['message'] ?? e.message;
+      return 'Đã có lỗi xảy ra!';
     } catch (e) {
-      return '$e';
+      return 'Đã có lỗi xảy ra!';
     }
   }
 }

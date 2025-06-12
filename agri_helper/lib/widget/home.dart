@@ -1,3 +1,5 @@
+// lib/widget/home.dart
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -51,7 +53,8 @@ class _HomeState extends ConsumerState<Home> {
   };
 
   String selectedFruitDisplay = 'Cây lúa'; // For display
-  String get selectedFruit => plantTypeMap[selectedFruitDisplay] ?? 'rice'; // For API
+  String get selectedFruit =>
+      plantTypeMap[selectedFruitDisplay] ?? 'rice'; // For API
 
   @override
   void initState() {
@@ -84,18 +87,19 @@ class _HomeState extends ConsumerState<Home> {
     setState(() => isLoading = true);
 
     final uri = Uri.parse(apilua);
-    final request = http.MultipartRequest('POST', uri);
-    request.fields['fruit'] = selectedFruit;
-    request.files.add(
-      await http.MultipartFile.fromPath(
-        'file',
-        _imagePick!.path,
-        contentType: MediaType('image', 'jpeg'),
-      ),
-    );
+    final request = http.MultipartRequest('POST', uri)
+      ..fields['fruit'] = selectedFruit
+      ..files.add(
+        await http.MultipartFile.fromPath(
+          'file',
+          _imagePick!.path,
+          contentType: MediaType('image', 'jpeg'),
+        ),
+      );
 
     try {
-      final streamed = await request.send().timeout(const Duration(seconds: 60));
+      final streamed =
+      await request.send().timeout(const Duration(seconds: 60));
       final response = await http.Response.fromStream(streamed);
 
       if (response.statusCode == 200) {
@@ -103,11 +107,9 @@ class _HomeState extends ConsumerState<Home> {
         final dynamic pd = jsonMap['predicted_disease'];
         String diseaseName = '';
         if (pd is List && pd.isNotEmpty) {
-          if (pd[0].toString() == "no") {
-            diseaseName = "Ảnh không hợp lệ";
-          } else {
-            diseaseName = pd[0].toString();
-          }
+          diseaseName = (pd[0].toString() == "no")
+              ? "Ảnh không hợp lệ"
+              : pd[0].toString();
         }
         setState(() {
           content = diseaseName;
@@ -119,6 +121,11 @@ class _HomeState extends ConsumerState<Home> {
           isLoading = false;
         });
       }
+    } on SocketException {
+      setState(() {
+        content = "Kiểm tra lại đường truyền mạng của bạn!";
+        isLoading = false;
+      });
     } on TimeoutException {
       setState(() {
         content = 'error: timeout';
@@ -154,11 +161,10 @@ class _HomeState extends ConsumerState<Home> {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    spreadRadius: 0,
                   ),
                 ],
               ),
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -170,26 +176,26 @@ class _HomeState extends ConsumerState<Home> {
                       color: Colors.teal[800],
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   DropdownButton2<String>(
                     isExpanded: true,
                     value: selectedFruitDisplay,
                     items: plantTypeMap.keys
                         .map((name) => DropdownMenuItem(
-                              value: name,
-                              child: Text(
-                                name,
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                            ))
+                      value: name,
+                      child: Text(
+                        name,
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ))
                         .toList(),
                     buttonStyleData: ButtonStyleData(
                       height: 50,
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.teal.shade100),
@@ -204,15 +210,18 @@ class _HomeState extends ConsumerState<Home> {
                       ),
                     ),
                     iconStyleData: IconStyleData(
-                      icon: Icon(Icons.keyboard_arrow_down_rounded, size: 28),
+                      icon: const Icon(Icons.keyboard_arrow_down_rounded,
+                          size: 28),
                       iconEnabledColor: Colors.teal,
                     ),
-                    menuItemStyleData: MenuItemStyleData(
+                    menuItemStyleData: const MenuItemStyleData(
                       height: 45,
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     onChanged: (value) {
-                      if (value != null) setState(() => selectedFruitDisplay = value);
+                      if (value != null) {
+                        setState(() => selectedFruitDisplay = value);
+                      }
                     },
                   ),
                 ],
@@ -229,11 +238,10 @@ class _HomeState extends ConsumerState<Home> {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    spreadRadius: 0,
                   ),
                 ],
               ),
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -245,8 +253,8 @@ class _HomeState extends ConsumerState<Home> {
                       color: Colors.teal[800],
                     ),
                   ),
-                  SizedBox(height: 16),
-                    // Image picker
+                  const SizedBox(height: 16),
+                  // Image picker
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade50,
@@ -256,7 +264,7 @@ class _HomeState extends ConsumerState<Home> {
                         width: 1,
                       ),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
                         GestureDetector(
@@ -282,42 +290,42 @@ class _HomeState extends ConsumerState<Home> {
                             ),
                             child: _imagePick == null
                                 ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Lottie.asset(
-                                        'assets/lottie/upload.json',
-                                        width: 150,
-                                        repeat: true,
-                                      ),
-                                      Text(
-                                        "Nhấn để chọn ảnh cây cần kiểm tra",
-                                        style: GoogleFonts.roboto(
-                                          color: Colors.grey[700],
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.file(
-                                      _imagePick!,
-                                      fit: BoxFit.cover,
-                                    ),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Lottie.asset(
+                                  'assets/lottie/upload.json',
+                                  width: 150,
+                                  repeat: true,
+                                ),
+                                Text(
+                                  "Nhấn để chọn ảnh cây cần kiểm tra",
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.grey[700],
+                                    fontSize: 15,
                                   ),
+                                ),
+                              ],
+                            )
+                                : ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.file(
+                                _imagePick!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
 
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
                   // Submit button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      icon: Icon(Icons.science_outlined),
+                      icon: const Icon(Icons.science_outlined),
                       label: Text(
                         'Bắt đầu phân tích',
                         style: GoogleFonts.roboto(
@@ -328,7 +336,7 @@ class _HomeState extends ConsumerState<Home> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal[700],
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -344,7 +352,7 @@ class _HomeState extends ConsumerState<Home> {
             // Loading indicator
             if (isLoading)
               Container(
-                margin: EdgeInsets.symmetric(vertical: 24),
+                margin: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: Column(
                     children: [
@@ -352,7 +360,7 @@ class _HomeState extends ConsumerState<Home> {
                         color: Colors.teal[700]!,
                         size: 40.0,
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text(
                         'Đang phân tích...',
                         style: GoogleFonts.roboto(
@@ -368,7 +376,7 @@ class _HomeState extends ConsumerState<Home> {
             // Result section
             if (content.isNotEmpty && !isLoading)
               Container(
-                margin: EdgeInsets.only(top: 24),
+                margin: const EdgeInsets.only(top: 24),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -376,52 +384,39 @@ class _HomeState extends ConsumerState<Home> {
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.1),
                       blurRadius: 10,
-                      spreadRadius: 0,
                     ),
                   ],
                 ),
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Kết quả phân tích',
-                      style: GoogleFonts.roboto(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.teal[800],
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: content == 'healthy'
-                            ? Colors.green.shade50
-                            : Colors.orange.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: content == 'healthy'
-                              ? Colors.green.shade200
-                              : Colors.orange.shade200,
-                        ),
-                      ),
-                      child: Text(
-                        'Kết quả: ${info[content]?["name"] ?? content}',
+                    // Display result or error without "Kết quả:" prefix for errors
+                    Builder(builder: (context) {
+                      final hasInfo = info.containsKey(content);
+                      final displayText = hasInfo
+                          ? 'Kết quả: ${info[content]!["name"]}'
+                          : content;
+                      final textColor = hasInfo
+                          ? (content == 'healthy'
+                          ? Colors.green.shade700
+                          : Colors.orange.shade900)
+                          : Colors.redAccent;
+                      return Text(
+                        displayText,
                         style: GoogleFonts.roboto(
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
-                          color: content == 'healthy'
-                              ? Colors.green.shade700
-                              : Colors.orange.shade900,
+                          color: textColor,
                         ),
-                      ),
-                    ),
-                    if (info[content]?['info'] != null && content != "Ảnh không hợp lệ") ...[
-                      SizedBox(height: 16),
+                      );
+                    }),
+                    const SizedBox(height: 16),
+                    // Only show detailed info for actual disease results
+                    if (info.containsKey(content) &&
+                        info[content]?['info'] != null)
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: Colors.teal.shade50,
                           borderRadius: BorderRadius.circular(12),
@@ -437,7 +432,7 @@ class _HomeState extends ConsumerState<Home> {
                                 color: Colors.teal[800],
                               ),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               info[content]!['info']!,
                               style: GoogleFonts.roboto(
@@ -449,7 +444,6 @@ class _HomeState extends ConsumerState<Home> {
                           ],
                         ),
                       ),
-                    ],
                   ],
                 ),
               ),

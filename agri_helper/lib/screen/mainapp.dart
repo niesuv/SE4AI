@@ -1,5 +1,3 @@
-// lib/screen/mainapp.dart
-
 import 'package:agri_helper/widget/noteview.dart';
 import 'package:agri_helper/widget/setting.dart';
 import 'package:agri_helper/widget/socialview.dart';
