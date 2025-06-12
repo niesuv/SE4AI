@@ -1,0 +1,773 @@
+{
+  "Apple___Cedar_apple_rust": {
+    "ten_benh": "Bệnh Gỉ Sắt Táo Tùng (Cedar Apple Rust)",
+    "thong_tin_benh": "Bệnh nấm dị chủ, cần cả cây táo và cây tuyết tùng (hoặc các cây bách xù) để hoàn thành vòng đời. Gây đốm màu cam/đỏ trên lá và quả táo; tạo khối u và 'sừng' bào tử màu cam trên cây tuyết tùng vào mùa xuân.",
+    "tac_hai": "Giảm sức sống cây táo, rụng lá sớm, làm giảm chất lượng và sản lượng quả. Quả có thể bị biến dạng và rụng sớm. Không thường gây chết cây trưởng thành.",
+    "nguyen_nhan_gay_benh": "Do nấm Gymnosporangium juniperi-virginianae gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Myclobutanil",
+      "Propiconazole",
+      "Trifloxystrobin",
+      "Captan",
+      "Ferbam",
+      "Sulfur (Lưu huỳnh)",
+      "Copper (Đồng)"
+    ]
+  },
+  "Apple___Apple_scab": {
+    "ten_benh": "Bệnh Ghẻ Táo (Apple Scab)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm màu ô liu đến đen trên lá, quả và cành non. Các đốm này có thể nổi lên, sần sùi như vảy ghẻ. Lá bị nhiễm nặng có thể bị vàng, xoắn và rụng sớm.",
+    "tac_hai": "Làm giảm khả năng quang hợp, rụng lá, quả bị biến dạng, nứt, giảm chất lượng và giá trị thương phẩm, có thể gây rụng quả non.",
+    "nguyen_nhan_gay_benh": "Do nấm Venturia inaequalis gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Myclobutanil",
+      "Captan",
+      "Mancozeb",
+      "Difenoconazole",
+      "Dodine",
+      "Thiophanate-methyl",
+      "Sulfur (Lưu huỳnh)",
+      "Trifloxystrobin",
+      "Pyraclostrobin"
+    ]
+  },
+  "Apple___Black_rot": {
+    "ten_benh": "Bệnh Thối Đen Táo (Apple Black Rot)",
+    "thong_tin_benh": "Bệnh do nấm có thể gây hại trên lá (đốm mắt ếch), cành (loét cành) và quả (thối quả). Trên quả, vết bệnh bắt đầu từ một đốm nhỏ màu nâu, lan rộng và chuyển sang màu đen, thường có các vòng đồng tâm. Phần thịt quả bị thối thường cứng và dai.",
+    "tac_hai": "Gây rụng lá, chết cành, thối quả, làm giảm năng suất và chất lượng quả nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nấm Botryosphaeria obtusa (tên giai đoạn vô tính là Sphaeropsis malorum) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Captan",
+      "Mancozeb",
+      "Thiophanate-methyl",
+      "Myclobutanil",
+      "Ziram",
+      "Ferbam",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Strawberry___Leaf_scorch": {
+    "ten_benh": "Bệnh Cháy Lá Dâu Tây (Strawberry Leaf Scorch)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm nhỏ, màu tím sẫm đến nâu trên lá. Các đốm này có thể liên kết lại thành các mảng lớn, làm cho lá trông như bị cháy. Bệnh thường bắt đầu từ lá già.",
+    "tac_hai": "Làm giảm diện tích quang hợp của lá, suy yếu cây, giảm năng suất và chất lượng quả. Trong trường hợp nghiêm trọng có thể làm chết cây.",
+    "nguyen_nhan_gay_benh": "Do nấm Diplocarpon earlianum (giai đoạn vô tính là Marssonina fragariae) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Myclobutanil",
+      "Captan",
+      "Mancozeb",
+      "Thiophanate-methyl",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Rice___Sheath_Blight": {
+    "ten_benh": "Bệnh Khô Vằn Lúa (Rice Sheath Blight)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các vết bệnh hình bầu dục hoặc không đều, màu xám xanh hoặc trắng xám với viền nâu trên bẹ lá, sau đó lan lên phiến lá và các bộ phận khác của cây. Trong điều kiện ẩm ướt, có thể thấy sợi nấm trắng và hạch nấm nhỏ màu nâu đen.",
+    "tac_hai": "Làm giảm khả năng quang hợp, cây sinh trưởng kém, hạt bị lép lửng, làm giảm năng suất và chất lượng gạo nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nấm Rhizoctonia solani (chủ yếu là anastomosis nhóm AG1-IA) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Azoxystrobin",
+      "Propiconazole",
+      "Difenoconazole",
+      "Trifloxystrobin",
+      "Hexaconazole",
+      "Validamycin",
+      "Tebuconazole",
+      "Pencycuron",
+      "Jinggangmycin (Kháng sinh)"
+    ]
+  },
+  "Rice___Leaf_Blast": {
+    "ten_benh": "Bệnh Đạo Ôn Lá Lúa (Rice Leaf Blast)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các vết bệnh hình thoi điển hình trên lá, có tâm màu xám tro, viền nâu sẫm. Bệnh cũng có thể gây hại trên cổ bông (đạo ôn cổ bông), đốt thân, làm gãy cổ bông hoặc thối đốt thân.",
+    "tac_hai": "Gây cháy lá, làm giảm khả năng quang hợp. Đạo ôn cổ bông gây lép hạt, gãy cổ bông, làm thất thoát năng suất nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nấm Magnaporthe oryzae (tên giai đoạn vô tính là Pyricularia oryzae) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Tricyclazole",
+      "Isoprothiolane",
+      "Carpropamid",
+      "Fenoxanil",
+      "Azoxystrobin",
+      "Kasugamycin (Kháng sinh)",
+      "Probenazole (Chất kích kháng)",
+      "Thiophanate-methyl"
+    ]
+  },
+  "Rice___Bacterial_Leaf_Blight": {
+    "ten_benh": "Bệnh Cháy Bìa Lá Lúa (Bạc Lá Lúa) (Rice Bacterial Leaf Blight)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các sọc úng nước màu xanh vàng hoặc xám vàng dọc theo mép lá hoặc gân lá, lan dần vào trong phiến lá. Các vết bệnh có thể kéo dài hết chiều dài lá, làm lá bị khô và chết. Buổi sáng sớm có thể thấy giọt dịch vi khuẩn màu vàng đục ở vết bệnh.",
+    "tac_hai": "Làm giảm diện tích quang hợp, cây sinh trưởng kém, hạt bị lép, làm giảm năng suất nghiêm trọng, đặc biệt khi bệnh tấn công ở giai đoạn trỗ.",
+    "nguyen_nhan_gay_benh": "Do vi khuẩn Xanthomonas oryzae pv. oryzae gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide)",
+      "Streptomycin (Kháng sinh - hạn chế sử dụng)",
+      "Kasugamycin (Kháng sinh)",
+      "Bismerthiazol",
+      "Bronopol",
+      "Ningnanmycin (Kháng sinh)"
+    ]
+  },
+  "Rice___Brown_Spot": {
+    "ten_benh": "Bệnh Đốm Nâu Lúa (Rice Brown Spot)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm hình bầu dục đến tròn, màu nâu, kích thước thay đổi trên lá, bẹ lá, và hạt. Đốm bệnh điển hình có tâm màu xám hoặc nâu nhạt, viền nâu sẫm. Bệnh thường phát triển mạnh ở những ruộng lúa thiếu dinh dưỡng, đặc biệt là kali.",
+    "tac_hai": "Làm giảm khả năng quang hợp, cây sinh trưởng còi cọc. Bệnh trên hạt làm giảm chất lượng gạo, hạt bị lem lép.",
+    "nguyen_nhan_gay_benh": "Do nấm Cochliobolus miyabeanus (tên giai đoạn vô tính là Bipolaris oryzae) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propiconazole",
+      "Iprodione",
+      "Azoxystrobin",
+      "Carbendazim",
+      "Tebuconazole",
+      "Captan"
+    ]
+  },
+  "Rice___Leaf_scald": {
+    "ten_benh": "Bệnh Lem Lép Hạt Lúa (Một phần) / Cháy Đầu Lá Lúa (Rice Leaf Scald)",
+    "thong_tin_benh": "Bệnh cháy đầu lá do nấm Microdochium oryzae (Rhynchosporium oryzae) gây ra các vết bệnh lớn, hình chữ nhật hoặc không đều ở đầu hoặc mép lá, có các vòng đồng tâm gợn sóng màu nâu nhạt và nâu sẫm xen kẽ, giống như vết bỏng. Bệnh cũng là một trong nhiều tác nhân gây lem lép hạt.",
+    "tac_hai": "Làm giảm diện tích quang hợp của lá. Nếu bệnh gây lem lép hạt sẽ làm giảm năng suất và chất lượng gạo.",
+    "nguyen_nhan_gay_benh": "Cháy đầu lá chủ yếu do nấm Microdochium oryzae. Lem lép hạt có thể do nhiều loại nấm và vi khuẩn khác nhau.",
+    "danh_sach_thuoc_goi_y": [
+      "Propiconazole",
+      "Azoxystrobin",
+      "Mancozeb",
+      "Carbendazim",
+      "Thiophanate-methyl",
+      "Tebuconazole"
+    ]
+  },
+  "Potato___Early_blight": {
+    "ten_benh": "Bệnh Cháy Sớm Khoai Tây (Potato Early Blight)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm bệnh đặc trưng trên lá, thường có hình tròn hoặc không đều, màu nâu sẫm đến đen, với các vòng đồng tâm bên trong (giống 'bia bắn'). Bệnh cũng có thể gây hại trên thân và củ (thối khô củ).",
+    "tac_hai": "Làm rụng lá sớm, giảm khả năng quang hợp, làm giảm kích thước và số lượng củ, ảnh hưởng đến năng suất. Thối củ làm giảm chất lượng và khả năng bảo quản.",
+    "nguyen_nhan_gay_benh": "Do nấm Alternaria solani gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Difenoconazole",
+      "Propiconazole",
+      "Các thuốc gốc đồng (Copper)",
+      "Boscalid",
+      "Fluopyram"
+    ]
+  },
+  "Potato___Late_blight": {
+    "ten_benh": "Bệnh Mốc Sương (Cháy Muộn) Khoai Tây (Potato Late Blight)",
+    "thong_tin_benh": "Bệnh do oomycete gây ra các đốm lớn, úng nước, màu xanh xám hoặc nâu trên lá, thường bắt đầu từ mép lá hoặc đầu lá. Mặt dưới lá, ở rìa vết bệnh, có thể thấy lớp mốc trắng mịn khi trời ẩm. Bệnh lan rất nhanh, có thể gây thối rụi toàn bộ thân lá. Trên củ gây thối nâu hoặc tím, ăn sâu vào thịt củ.",
+    "tac_hai": "Là một trong những bệnh hại khoai tây nguy hiểm nhất, có thể gây mất trắng năng suất nếu không phòng trừ kịp thời. Gây thối củ cả trên đồng và trong kho bảo quản.",
+    "nguyen_nhan_gay_benh": "Do oomycete Phytophthora infestans gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Cymoxanil",
+      "Metalaxyl/Mefenoxam (thường kết hợp với Mancozeb)",
+      "Propamocarb",
+      "Dimethomorph",
+      "Fluopicolide",
+      "Mandipropamid",
+      "Zoxamide",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Durian___LEAF_BLIGHT": {
+    "ten_benh": "Bệnh Cháy Lá Sầu Riêng (Durian Leaf Blight)",
+    "thong_tin_benh": "Là một thuật ngữ chung cho các triệu chứng cháy lá trên sầu riêng có thể do nhiều loại nấm khác nhau gây ra, phổ biến nhất là do _Rhizoctonia solani_ hoặc các loài Phomopsis, Colletotrichum. Triệu chứng thường là các đốm lớn màu nâu hoặc xám trên lá, lan rộng nhanh chóng, làm khô và rụng lá.",
+    "tac_hai": "Gây rụng lá hàng loạt, ảnh hưởng đến khả năng quang hợp và sinh trưởng của cây, giảm năng suất và chất lượng quả, có thể làm chết cây non hoặc cành bị nhiễm nặng.",
+    "nguyen_nhan_gay_benh": "Thường do nấm Rhizoctonia solani, nhưng cũng có thể do các loài nấm khác như Phomopsis durionis, Colletotrichum gloeosporioides, Lasiodiplodia aheobromae",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propineb",
+      "Hexaconazole",
+      "Propiconazole",
+      "Azoxystrobin",
+      "Carbendazim",
+      "Thiophanate-methyl",
+      "Các thuốc gốc đồng (Copper Hydroxide, Copper Oxychloride)",
+      "Validamycin (đặc hiệu cho Rhizoctonia)"
+    ]
+  },
+  "Durian___ALLOCARIDARA_ATTACK": {
+    "ten_benh": "Sầu Riêng bị Rầy Phấn Tấn Công (Durian Allocadarida Attack)",
+    "thong_tin_benh": "Rầy phấn (Allocandidula malayensis, trước đây là Allocasuarinophaga malayensis hoặc Allocasuarina attack) là côn trùng chích hút nhựa cây. Chúng thường tập trung ở đọt non, lá non, mặt dưới lá. Rầy tiết ra chất thải dạng sáp trắng như phấn, bao phủ các bộ phận bị hại.",
+    "tac_hai": "Lá non bị xoăn, biến dạng, đọt non có thể bị chùn lại, cây sinh trưởng kém. Mật ngọt do rầy tiết ra còn tạo điều kiện cho nấm bồ hóng phát triển, làm giảm khả năng quang hợp.",
+    "nguyen_nhan_gay_benh": "Do rầy phấn Allocandidula malayensis (thuộc họ Psyllidae) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Acetamiprid",
+      "Dinotefuran",
+      "Buprofezin",
+      "Cypermethrin",
+      "Lambda-cyhalothrin",
+      "Dầu khoáng (Mineral oil)",
+      "Nấm ký sinh (ví dụ: Beauveria bassiana, Metarhizium anisopliae)"
+    ]
+  },
+  "Durian___ALGAL_LEAF_SPOT": {
+    "ten_benh": "Bệnh Đốm Tảo Sầu Riêng (Durian Algal Leaf Spot)",
+    "thong_tin_benh": "Bệnh do một loại tảo ký sinh gây ra các đốm nổi màu cam, đỏ gạch hoặc xanh xám trên mặt lá, đôi khi trên cành. Đốm bệnh có dạng tròn hoặc không đều, bề mặt mịn như nhung hoặc hơi sần sùi.",
+    "tac_hai": "Thường không gây hại nghiêm trọng, nhưng nếu mật độ đốm tảo cao có thể làm giảm khả năng quang hợp của lá, ảnh hưởng đến thẩm mỹ. Bệnh nặng có thể làm lá vàng và rụng.",
+    "nguyen_nhan_gay_benh": "Do tảo ký sinh Cephaleuros virescens gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Các thuốc gốc đồng (Copper Oxychloride, Copper Hydroxide, Bordeaux mixture)",
+      "Mancozeb (có thể có tác dụng nhất định)",
+      "Cải thiện độ thông thoáng của vườn cây",
+      "Bón phân cân đối để cây khỏe mạnh"
+    ]
+  },
+  "Durian___PHOMOPSIS_LEAF_SPOT": {
+    "ten_benh": "Bệnh Đốm Lá Phomopsis Sầu Riêng (Durian Phomopsis Leaf Spot)",
+    "thong_tin_benh": "Bệnh do nấm Phomopsis (thường là Phomopsis durionis_) gây ra các đốm trên lá, ban đầu nhỏ, sau lớn dần, có thể có màu nâu nhạt đến nâu sẫm, thường có viền rõ rệt. Tâm vết bệnh có thể có các chấm đen nhỏ li ti (các ổ bào tử pycnidia của nấm). Bệnh cũng có thể gây thối trái hoặc loét thân cành.",
+    "tac_hai": "Gây rụng lá nếu bệnh nặng, ảnh hưởng đến quang hợp và sinh trưởng. Gây thối trái làm giảm năng suất và chất lượng.",
+    "nguyen_nhan_gay_benh": "Do các loài nấm thuộc chi Phomopsis, phổ biến là Phomopsis durionis.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Carbendazim",
+      "Thiophanate-methyl",
+      "Propineb",
+      "Benomyl (nếu còn được phép sử dụng)",
+      "Azoxystrobin",
+      "Difenoconazole",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "mango___Bacterial_Canker": {
+    "ten_benh": "Bệnh Loét Vi Khuẩn Xoài (Mango Bacterial Canker / Bacterial Black Spot)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các đốm đen, nổi gờ, có hình dạng không đều trên lá, cành và quả. Trên lá, vết bệnh thường có quầng vàng. Trên cành, có thể gây loét, nứt và chảy nhựa. Trên quả, vết bệnh làm quả bị nứt, chảy nhựa và thối.",
+    "tac_hai": "Gây rụng lá, chết cành, làm giảm chất lượng và năng suất quả nghiêm trọng. Quả bị bệnh không thể xuất khẩu.",
+    "nguyen_nhan_gay_benh": "Do vi khuẩn Xanthomonas campestris pv. mangiferaeindicae gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide, Copper Sulfate)",
+      "Streptomycin (Kháng sinh - sử dụng hạn chế và tuân thủ quy định)",
+      "Kasugamycin (Kháng sinh)",
+      "Phun vôi phòng bệnh",
+      "Cắt tỉa cành bệnh và tiêu hủy"
+    ]
+  },
+  "mango___Anthracnose": {
+    "ten_benh": "Bệnh Thán Thư Xoài (Mango Anthracnose)",
+    "thong_tin_benh": "Bệnh do nấm gây hại trên lá, cành non, hoa và quả. Trên lá và cành non xuất hiện các đốm màu nâu sẫm, lõm. Trên hoa gây thối đen và rụng. Trên quả gây các đốm đen, lõm, có thể lan rộng làm thối quả.",
+    "tac_hai": "Gây rụng hoa, rụng quả non, thối quả trước và sau thu hoạch, làm giảm năng suất và chất lượng nghiêm trọng, ảnh hưởng đến giá trị xuất khẩu.",
+    "nguyen_nhan_gay_benh": "Do nấm Colletotrichum gloeosporioides sensu lato (complex) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propineb",
+      "Azoxystrobin",
+      "Difenoconazole",
+      "Prochloraz",
+      "Thiophanate-methyl",
+      "Captan",
+      "Các thuốc gốc đồng (Copper Hydroxide, Copper Oxychloride)",
+      "Pyraclostrobin"
+    ]
+  },
+  "mango___Powdery_Mildew": {
+    "ten_benh": "Bệnh Phấn Trắng Xoài (Mango Powdery Mildew)",
+    "thong_tin_benh": "Bệnh do nấm gây ra một lớp bột màu trắng xám trên bề mặt lá non, chồi hoa, hoa và quả non. Các bộ phận bị nhiễm bệnh có thể bị biến dạng, xoăn lại, hoa và quả non có thể bị rụng.",
+    "tac_hai": "Gây rụng hoa, rụng quả non, làm giảm khả năng đậu quả và năng suất. Ảnh hưởng đến sự phát triển của chồi và lá non.",
+    "nguyen_nhan_gay_benh": "Do nấm Oidium mangiferae gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Sulfur (Lưu huỳnh dạng bột thấm nước hoặc dạng huyền phù)",
+      "Dinocap",
+      "Myclobutanil",
+      "Hexaconazole",
+      "Penconazole",
+      "Trifloxystrobin",
+      "Tebuconazole",
+      "Carbendazim"
+    ]
+  },
+  "mango___Cutting_Weevil": {
+    "ten_benh": "Sâu Cắn Ngọn Xoài (Mango Cutting Weevil / Mango Shoot Borer)",
+    "thong_tin_benh": "Thường là do loài bọ vòi voi Deporaus marginatus hoặc các loài tương tự. Con trưởng thành đục lỗ và đẻ trứng vào các chồi non, cuống lá non. Sâu non nở ra ăn phá bên trong làm chồi non, lá non bị héo, khô và rụng.",
+    "tac_hai": "Làm chùn đọt, cây không ra được cơi đọt mới, ảnh hưởng đến sự phát triển của cây, đặc biệt là cây non hoặc giai đoạn kiến thiết cơ bản. Giảm khả năng ra hoa, đậu quả.",
+    "nguyen_nhan_gay_benh": "Do ấu trùng của bọ vòi voi (weevil), ví dụ Deporaus marginatus hoặc các loài sâu đục chồi khác.",
+    "danh_sach_thuoc_goi_y": [
+      "Cypermethrin",
+      "Lambda-cyhalothrin",
+      "Deltamethrin",
+      "Chlorpyrifos Ethyl",
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Fipronil",
+      "Biện pháp thủ công: thu gom và tiêu hủy các đọt bị hại."
+    ]
+  },
+  "mango___Sooty_Mould": {
+    "ten_benh": "Bệnh Bồ Hóng Xoài (Mango Sooty Mould)",
+    "thong_tin_benh": "Bệnh do các loài nấm bồ hóng (Capnodium, Meliola,...) phát triển trên bề mặt lá, cành, quả dựa vào chất thải (mật đường) do các côn trùng chích hút (rầy, rệp,...) tiết ra. Nấm tạo thành một lớp màng mỏng màu đen hoặc nâu đen như tro bếp.",
+    "tac_hai": "Làm giảm khả năng quang hợp của lá, ảnh hưởng đến sinh trưởng của cây. Làm bẩn quả, giảm giá trị thương phẩm. Không trực tiếp gây hại mô cây.",
+    "nguyen_nhan_gay_benh": "Do các loài nấm thuộc nhóm nấm bồ hóng phát triển trên mật do côn trùng chích hút (rệp sáp, rầy mềm, rầy phấn trắng,...) tiết ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Kiểm soát côn trùng chích hút (nguyên nhân chính): Imidacloprid, Thiamethoxam, dầu khoáng.",
+      "Phun nước để rửa trôi lớp bồ hóng.",
+      "Các thuốc gốc đồng hoặc lưu huỳnh có thể giúp hạn chế sự phát triển của nấm.",
+      "Tinh bột hoặc xà phòng diệt côn trùng (insecticidal soap) có thể giúp rửa trôi."
+    ]
+  },
+  "mango___Gall_Midge": {
+    "ten_benh": "Ruồi Đục Nụ/Lá Xoài (Mango Gall Midge)",
+    "thong_tin_benh": "Do các loài ruồi nhỏ (muỗi) thuộc họ Cecidomyiidae gây ra. Con cái đẻ trứng vào các mô non của lá, hoa, hoặc quả non. Ấu trùng nở ra ăn phá bên trong, kích thích mô cây phát triển bất thường tạo thành các mụn nhỏ, u, hoặc nốt sần (gall).",
+    "tac_hai": "Làm biến dạng lá, rụng hoa, rụng quả non. Giảm khả năng quang hợp và sinh trưởng của cây. Ảnh hưởng đến năng suất và thẩm mỹ của quả.",
+    "nguyen_nhan_gay_benh": "Do ấu trùng của các loài ruồi (muỗi) đục nụ/lá xoài (Gall Midge), ví dụ: Procontarinia spp., Erosomyia spp.",
+    "danh_sach_thuoc_goi_y": [
+      "Dimethoate",
+      "Profenofos",
+      "Thiamethoxam",
+      "Imidacloprid",
+      "Lambda-cyhalothrin",
+      "Cắt tỉa và tiêu hủy các bộ phận bị hại.",
+      "Sử dụng bẫy màu vàng để theo dõi ruồi trưởng thành."
+    ]
+  },
+  "Corn_(maize)___Common_rust_": {
+    "ten_benh": "Bệnh Gỉ Sắt Thông Thường Ngô (Corn Common Rust)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các ổ nổi nhỏ, hình bầu dục hoặc thuôn dài, màu nâu đỏ (giai đoạn urediniospores) hoặc nâu đen (giai đoạn teliospores) trên cả hai mặt lá, bẹ lá và thân. Các ổ gỉ thường rải rác.",
+    "tac_hai": "Làm giảm diện tích quang hợp, cây sinh trưởng yếu. Nếu bệnh nặng có thể làm giảm năng suất hạt và chất lượng thân lá làm thức ăn gia súc.",
+    "nguyen_nhan_gay_benh": "Do nấm Puccinia sorghi gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propiconazole",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Trifloxystrobin",
+      "Tebuconazole",
+      "Difenoconazole",
+      "Chlorothalonil"
+    ]
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "ten_benh": "Bệnh Cháy Lá Lớn Ngô (Corn Northern Leaf Blight)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các vết bệnh lớn, hình điếu xì gà hoặc hình thoi, màu xám xanh đến nâu nhạt trên lá. Vết bệnh có thể dài tới 15cm. Bệnh thường bắt đầu từ các lá phía dưới rồi lan dần lên trên.",
+    "tac_hai": "Làm giảm nghiêm trọng diện tích quang hợp của lá, dẫn đến giảm năng suất hạt. Thân cây có thể yếu hơn.",
+    "nguyen_nhan_gay_benh": "Do nấm Exserohilum turcicum (tên cũ: Helminthosporium turcicum) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propiconazole",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Trifloxystrobin",
+      "Difenoconazole",
+      "Tebuconazole",
+      "Chlorothalonil"
+    ]
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "ten_benh": "Bệnh Đốm Lá Xám Ngô (Corn Gray Leaf Spot) / Đốm Lá Cercospora Ngô",
+    "thong_tin_benh": "Bệnh do nấm Cercospora gây ra các vết bệnh ban đầu nhỏ, sau đó phát triển thành hình chữ nhật hẹp, dài, màu nâu đến xám, thường bị giới hạn bởi các gân lá. Các vết bệnh có thể liên kết lại thành các mảng lớn.",
+    "tac_hai": "Làm giảm diện tích quang hợp, gây cháy lá và rụng lá sớm, dẫn đến giảm năng suất hạt. Bệnh nặng có thể làm thân cây yếu, dễ đổ ngã.",
+    "nguyen_nhan_gay_benh": "Do nấm Cercospora zeae-maydis và Cercospora zeina gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Pyraclostrobin",
+      "Azoxystrobin",
+      "Trifloxystrobin",
+      "Propiconazole",
+      "Difenoconazole",
+      "Tebuconazole",
+      "Mancozeb",
+      "Chlorothalonil",
+      "Fluxapyroxad"
+    ]
+  },
+  "Banana___Banana_Fruit_Scarring_Beetle": {
+    "ten_benh": "Bọ Cánh Cứng Gây Sẹo Trái Chuối (Banana Fruit Scarring Beetle)",
+    "thong_tin_benh": "Do các loài bọ cánh cứng nhỏ (ví dụ: Basilepta subcostata hoặc các loài thuộc họ Chrysomelidae) ăn phá bề mặt vỏ trái chuối non, gây ra các vết sẹo màu nâu, sần sùi, làm giảm giá trị thương phẩm của quả. Bọ cũng có thể ăn lá non.",
+    "tac_hai": "Chủ yếu làm mất mỹ quan vỏ quả, giảm giá trị xuất khẩu và tiêu thụ. Không ảnh hưởng nhiều đến chất lượng thịt quả bên trong nếu vết sẹo không quá sâu.",
+    "nguyen_nhan_gay_benh": "Do các loài bọ cánh cứng (beetle) ăn phá vỏ quả non, ví dụ Basilepta subcostata.",
+    "danh_sach_thuoc_goi_y": [
+      "Chlorpyrifos (sử dụng cẩn thận, tuân thủ thời gian cách ly)",
+      "Cypermethrin",
+      "Lambda-cyhalothrin",
+      "Deltamethrin",
+      "Bao buồng chuối sớm bằng túi chuyên dụng.",
+      "Vệ sinh vườn, loại bỏ nơi trú ẩn của bọ."
+    ]
+  },
+  "Banana___Anthracnose": {
+    "ten_benh": "Bệnh Thán Thư Chuối (Banana Anthracnose)",
+    "thong_tin_benh": "Bệnh do nấm Colletotrichum musae gây ra, chủ yếu trên quả chuối, đặc biệt là sau thu hoạch hoặc khi quả chín. Vết bệnh ban đầu là những đốm nhỏ màu nâu, sau đó lan rộng, lõm xuống, có màu đen. Trên các vết bệnh có thể xuất hiện các chấm nhỏ màu hồng hoặc cam (đám bào tử). Bệnh cũng có thể gây thối cuống buồng.",
+    "tac_hai": "Gây thối quả, làm giảm chất lượng và thời gian bảo quản quả sau thu hoạch. Ảnh hưởng lớn đến giá trị thương phẩm.",
+    "nguyen_nhan_gay_benh": "Do nấm Colletotrichum musae gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Prochloraz (xử lý sau thu hoạch)",
+      "Thiabendazole (xử lý sau thu hoạch)",
+      "Imazalil (xử lý sau thu hoạch)",
+      "Mancozeb (phun phòng ngoài đồng)",
+      "Propiconazole (phun phòng ngoài đồng)",
+      "Azoxystrobin (phun phòng ngoài đồng)",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Banana___Black_and_Yellow_Sigatoka": {
+    "ten_benh": "Bệnh Sigatoka Đen và Vàng trên Chuối",
+    "thong_tin_benh": "Là hai bệnh nấm lá nghiêm trọng. Sigatoka vàng (Mycosphaerella musicola) gây các đốm sọc vàng nhạt song song với gân lá, sau đó lớn dần thành đốm hình bầu dục màu nâu với quầng vàng. Sigatoka đen (Mycosphaerella fijiensis) gây các sọc nhỏ màu nâu đỏ hoặc đen ở mặt dưới lá, phát triển thành đốm lớn hơn, sẫm màu hơn và gây hại nặng hơn Sigatoka vàng.",
+    "tac_hai": "Làm giảm đáng kể diện tích quang hợp của lá, làm lá khô cháy và rụng sớm. Ảnh hưởng nghiêm trọng đến sinh trưởng của cây, kích thước và chất lượng quả, làm quả chín sớm, giảm năng suất.",
+    "nguyen_nhan_gay_benh": "Sigatoka vàng do nấm Mycosphaerella musicola (giai đoạn vô tính Pseudocercospora musae). Sigatoka đen do nấm Mycosphaerella fijiensis (giai đoạn vô tính Paracercospora fijiensis).",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Propiconazole",
+      "Tridemorph",
+      "Thiophanate-methyl",
+      "Azoxystrobin",
+      "Trifloxystrobin",
+      "Difenoconazole",
+      "Chlorothalonil",
+      "Dầu khoáng (sử dụng kết hợp hoặc đơn lẻ để quản lý)"
+    ]
+  },
+  "Banana___Banana_Skipper_Damage": {
+    "ten_benh": "Thiệt Hại do Sâu Cuốn Lá Chuối (Banana Skipper Damage)",
+    "thong_tin_benh": "Do ấu trùng (sâu non) của bướm nhảy (Erionota thrax hoặc các loài tương tự) gây ra. Sâu non cắt mép lá chuối rồi cuốn lại thành một cái tổ hình ống để ẩn nấp và ăn phá bên trong. Các vết cắt và cuốn lá rất đặc trưng.",
+    "tac_hai": "Làm giảm diện tích quang hợp của lá, ảnh hưởng đến sinh trưởng của cây và năng suất quả nếu mật độ sâu cao. Làm mất thẩm mỹ của lá.",
+    "nguyen_nhan_gay_benh": "Do ấu trùng của bướm nhảy chuối (Erionota thrax, họ Hesperiidae) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Cypermethrin",
+      "Deltamethrin",
+      "Lambda-cyhalothrin",
+      "Chlorantraniliprole",
+      "Bacillus thuringiensis (Bt) - thuốc trừ sâu sinh học",
+      "Biện pháp thủ công: bắt sâu hoặc ngắt bỏ các lá bị cuốn."
+    ]
+  },
+  "Banana___Chewing_insect_damage_on_banana_leaf": {
+    "ten_benh": "Thiệt Hại do Côn Trùng Ăn Lá Chuối (Chewing insect damage on banana leaf)",
+    "thong_tin_benh": "Đây là mô tả chung cho các thiệt hại do nhiều loại côn trùng miệng nhai gây ra trên lá chuối, ví dụ như châu chấu, cào cào, sâu ăn lá khác. Triệu chứng là lá bị ăn khuyết, thủng lỗ, hoặc chỉ còn trơ lại gân lá.",
+    "tac_hai": "Làm giảm diện tích quang hợp, ảnh hưởng đến sinh trưởng và năng suất nếu thiệt hại nặng.",
+    "nguyen_nhan_gay_benh": "Do nhiều loại côn trùng có bộ phận miệng nhai gây ra (ví dụ: châu chấu, cào cào, các loại sâu ăn tạp).",
+    "danh_sach_thuoc_goi_y": [
+      "Cypermethrin",
+      "Lambda-cyhalothrin",
+      "Chlorpyrifos Ethyl",
+      "Fipronil",
+      "Bacillus thuringiensis (Bt) (nếu là sâu non bộ cánh vảy)",
+      "Xác định đúng loài côn trùng để chọn thuốc phù hợp."
+    ]
+  },
+  "Banana___Banana_Split_Peel": {
+    "ten_benh": "Hiện Tượng Nứt Vỏ Trái Chuối (Banana Split Peel)",
+    "thong_tin_benh": "Là một hiện tượng sinh lý chứ không phải bệnh do sinh vật gây ra. Vỏ quả chuối bị nứt dọc theo chiều dài, thường xảy ra khi quả đang phát triển nhanh hoặc gần chín. Nứt có thể nông hoặc sâu vào thịt quả.",
+    "tac_hai": "Làm giảm giá trị thương phẩm, tạo cửa ngõ cho nấm bệnh và côn trùng xâm nhập gây thối quả. Không ảnh hưởng đến chất lượng thịt quả nếu vết nứt mới và nông.",
+    "nguyen_nhan_gay_benh": "Do các yếu tố sinh lý và môi trường: thay đổi độ ẩm đất đột ngột (khô hạn kéo dài rồi mưa nhiều), chênh lệch nhiệt độ ngày đêm lớn, bón phân không cân đối (thừa đạm, thiếu kali hoặc canxi), hoặc đặc tính của giống.",
+    "danh_sach_thuoc_goi_y": [
+      "Không có thuốc đặc trị vì đây là vấn đề sinh lý.",
+      "Biện pháp quản lý: duy trì độ ẩm đất ổn định, tưới nước đều đặn.",
+      "Bón phân cân đối, đủ kali và canxi.",
+      "Chọn giống ít bị nứt vỏ.",
+      "Bao buồng chuối có thể giúp giảm tác động của môi trường."
+    ]
+  },
+  "Grape___Black_rot": {
+    "ten_benh": "Bệnh Thối Đen Nho (Grape Black Rot)",
+    "thong_tin_benh": "Bệnh do nấm gây hại trên lá, chồi non, tua cuốn và quả. Trên lá có đốm tròn màu nâu với các chấm đen nhỏ (quả thể nấm) ở giữa. Trên quả, ban đầu là đốm nhỏ màu nâu nhạt, sau đó lan rộng, quả chuyển sang màu đen, khô cứng và nhăn nheo (quả 'xác ướp').",
+    "tac_hai": "Gây rụng lá, làm giảm khả năng quang hợp. Gây thối quả hàng loạt, làm thất thu năng suất nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nấm Guignardia bidwellii (giai đoạn vô tính là Phyllosticta ampelicida) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Captan",
+      "Myclobutanil",
+      "Difenoconazole",
+      "Ziram",
+      "Thiophanate-methyl",
+      "Trifloxystrobin",
+      "Pyraclostrobin"
+    ]
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "ten_benh": "Bệnh Cháy Lá Nho (Đốm Lá Isariopsis) (Grape Leaf Blight / Isariopsis Leaf Spot)",
+    "thong_tin_benh": "Bệnh do nấm Pseudocercospora vitis (tên cũ Isariopsis clavispora) gây ra. Triệu chứng là các đốm màu nâu đỏ đến nâu sẫm, không đều, thường xuất hiện ở mặt dưới lá trước rồi mới thấy ở mặt trên. Các đốm có thể liên kết lại thành mảng lớn làm lá bị cháy và rụng sớm.",
+    "tac_hai": "Gây rụng lá sớm, làm giảm khả năng quang hợp, ảnh hưởng đến sự phát triển của cây, năng suất và chất lượng quả (quả có thể bị nhỏ, hàm lượng đường thấp).",
+    "nguyen_nhan_gay_benh": "Do nấm Pseudocercospora vitis (syn. Isariopsis clavispora) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Captan",
+      "Các thuốc gốc đồng (Copper)",
+      "Myclobutanil",
+      "Tebuconazole",
+      "Thiophanate-methyl",
+      "Ziram"
+    ]
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "ten_benh": "Bệnh Esca (Sởi Đen) Nho (Grape Esca / Black Measles)",
+    "thong_tin_benh": "Là một bệnh phức hợp liên quan đến nhiều loài nấm gây mục gỗ, xâm nhập qua vết thương. Triệu chứng trên lá rất đa dạng, có thể là các sọc màu vàng hoặc đỏ giữa các gân lá (lá vằn hổ), hoặc các đốm nhỏ màu nâu sẫm đến đen trên quả (sởi đen). Cây có thể bị suy yếu từ từ hoặc chết đột ngột (apoplexy).",
+    "tac_hai": "Làm suy yếu cây, giảm tuổi thọ vườn nho, giảm năng suất và chất lượng quả. Có thể gây chết cây.",
+    "nguyen_nhan_gay_benh": "Là một hội chứng bệnh do nhiều loài nấm gây mục gỗ gây ra, chủ yếu là Phaeomoniella chlamydospora, Phaeoacremonium aleophilum, và các loài Fomitiporia (ví dụ Fomitiporia mediterranea).",
+    "danh_sach_thuoc_goi_y": [
+      "Hiện không có thuốc hóa học đặc trị hiệu quả cho bệnh Esca khi cây đã nhiễm.",
+      "Phòng ngừa là chính: tránh gây vết thương lớn khi cắt tỉa, khử trùng dụng cụ cắt tỉa.",
+      "Bảo vệ vết thương bằng sơn hoặc các chế phẩm bảo vệ vết cắt.",
+      "Loại bỏ và tiêu hủy các bộ phận cây bị bệnh nặng.",
+      "Một số chế phẩm sinh học (Trichoderma) có thể giúp phòng ngừa."
+    ]
+  },
+  "Pepper_bell___Bacterial_spot": {
+    "ten_benh": "Bệnh Đốm Vi Khuẩn Ớt Chuông (Pepper Bell Bacterial Spot)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các đốm nhỏ, úng nước trên lá, sau đó lớn dần, có tâm màu nâu đến đen, viền vàng. Các đốm có thể rách ở giữa. Trên quả, vết bệnh là các đốm nổi gờ, sần sùi, màu nâu hoặc đen. Trên thân và cuống cũng có thể bị bệnh.",
+    "tac_hai": "Gây rụng lá, làm giảm khả năng quang hợp, cây còi cọc. Làm thối quả, giảm năng suất và chất lượng nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nhiều loài vi khuẩn thuộc chi Xanthomonas gây ra (ví dụ: Xanthomonas euvesicatoria, X. vesicatoria_, X. perforans, X. gardneri).",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide) – thường kết hợp với Mancozeb để tăng hiệu quả và giảm nguy cơ kháng thuốc.",
+      "Streptomycin (Kháng sinh - sử dụng hạn chế, tuân thủ quy định, nguy cơ kháng thuốc cao).",
+      "Kasugamycin (Kháng sinh).",
+      "Actigard (Acibenzolar-S-methyl - chất kích kháng).",
+      "Sử dụng giống kháng bệnh."
+    ]
+  },
+  "Tomato___Target_Spot": {
+    "ten_benh": "Bệnh Đốm Vòng Cà Chua (Tomato Target Spot)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm đặc trưng trên lá, có màu nâu sẫm với các vòng tròn đồng tâm sẫm màu hơn, giống như 'bia bắn'. Bệnh cũng có thể tấn công thân, cuống hoa và quả, gây thối quả.",
+    "tac_hai": "Gây rụng lá, làm giảm khả năng quang hợp, ảnh hưởng đến sinh trưởng của cây. Thối quả làm giảm năng suất và chất lượng.",
+    "nguyen_nhan_gay_benh": "Do nấm Corynespora cassiicola gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Difenoconazole",
+      "Propiconazole",
+      "Fluxapyroxad",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Tomato___Late_blight": {
+    "ten_benh": "Bệnh Mốc Sương (Cháy Muộn) Cà Chua (Tomato Late Blight)",
+    "thong_tin_benh": "Bệnh do Oomycete gây ra các đốm lớn, úng nước, màu xanh xám hoặc nâu trên lá, thường bắt đầu từ mép lá hoặc đầu lá. Mặt dưới lá, ở rìa vết bệnh, có thể thấy lớp mốc trắng mịn khi trời ẩm. Bệnh lan rất nhanh, có thể gây thối rụi toàn bộ thân lá. Trên quả, gây các đốm lớn màu nâu, cứng, bề mặt sần sùi, ăn sâu vào thịt quả.",
+    "tac_hai": "Là một trong những bệnh hại cà chua nguy hiểm nhất, có thể gây mất trắng năng suất nếu không phòng trừ kịp thời. Gây thối quả cả trên đồng và sau thu hoạch.",
+    "nguyen_nhan_gay_benh": "Do Oomycete Phytophthora infestans gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Cymoxanil",
+      "Metalaxyl/Mefenoxam (thường kết hợp với Mancozeb)",
+      "Propamocarb",
+      "Dimethomorph",
+      "Fluopicolide",
+      "Mandipropamid",
+      "Ametoctradin",
+      "Các thuốc gốc đồng (Copper)"
+    ]
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "ten_benh": "Bệnh Khảm Thuốc Lá trên Cà Chua (Tomato Mosaic Virus - ToMV)",
+    "thong_tin_benh": "Bệnh do virus gây ra, triệu chứng rất đa dạng: lá có các mảng màu xanh nhạt và xanh đậm xen kẽ (khảm), lá có thể bị xoăn, biến dạng, kích thước nhỏ lại. Cây sinh trưởng còi cọc. Quả có thể có đốm vàng hoặc nâu, bên trong quả có thể bị hóa gỗ.",
+    "tac_hai": "Làm giảm khả năng quang hợp, cây còi cọc, giảm năng suất và chất lượng quả. Virus dễ lây lan qua tiếp xúc cơ học.",
+    "nguyen_nhan_gay_benh": "Do Tomato Mosaic Virus (ToMV) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Không có thuốc hóa học đặc trị virus thực vật.",
+      "Phòng ngừa là chính: sử dụng hạt giống sạch bệnh.",
+      "Vệ sinh dụng cụ làm vườn thường xuyên (nhúng vào dung dịch sữa tách bơ hoặc trisodium phosphate).",
+      "Nhổ bỏ và tiêu hủy cây bị bệnh.",
+      "Không hút thuốc khi làm việc với cây cà chua (ToMV có thể có trong thuốc lá).",
+      "Kiểm soát côn trùng môi giới (nếu có).",
+      "Trồng giống kháng virus."
+    ]
+  },
+  "Tomato___Leaf_Mold": {
+    "ten_benh": "Bệnh Mốc Lá Cà Chua (Tomato Leaf Mold)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm màu vàng nhạt hoặc xanh nhạt ở mặt trên lá. Mặt dưới lá, tương ứng với các đốm này, xuất hiện lớp nấm mốc mịn như nhung, màu ô liu đến nâu hoặc xám. Bệnh nặng làm lá bị khô và rụng.",
+    "tac_hai": "Làm giảm khả năng quang hợp, rụng lá, ảnh hưởng đến sinh trưởng và năng suất của cây. Bệnh phát triển mạnh trong điều kiện ẩm độ cao và thông thoáng kém.",
+    "nguyen_nhan_gay_benh": "Do nấm Fulvia fulva (tên cũ Cladosporium fulvum) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Các thuốc gốc đồng (Copper)",
+      "Benomyl (nếu còn được phép)",
+      "Carbendazim",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Đảm bảo thông thoáng tốt trong nhà kính/vườn trồng."
+    ]
+  },
+  "Tomato___Bacterial_spot": {
+    "ten_benh": "Bệnh Đốm Vi Khuẩn Cà Chua (Tomato Bacterial Spot)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các đốm nhỏ, úng nước trên lá, sau đó lớn dần, có tâm màu nâu đến đen, viền vàng. Các đốm có thể rách ở giữa. Trên quả, vết bệnh là các đốm nổi gờ, sần sùi, màu nâu hoặc đen. Trên thân và cuống cũng có thể bị bệnh.",
+    "tac_hai": "Gây rụng lá, làm giảm khả năng quang hợp, cây còi cọc. Làm thối quả, giảm năng suất và chất lượng nghiêm trọng.",
+    "nguyen_nhan_gay_benh": "Do nhiều loài vi khuẩn thuộc chi Xanthomonas gây ra (ví dụ: Xanthomonas euvesicatoria, X. vesicatoria, X. perforans, X. gardneri).",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide) – thường kết hợp với Mancozeb.",
+      "Streptomycin (Kháng sinh - sử dụng hạn chế, tuân thủ quy định).",
+      "Kasugamycin (Kháng sinh).",
+      "Actigard (Acibenzolar-S-methyl - chất kích kháng).",
+      "Sử dụng giống kháng bệnh."
+    ]
+  },
+  "Tomato___Early_blight": {
+    "ten_benh": "Bệnh Cháy Sớm Cà Chua (Tomato Early Blight)",
+    "thong_tin_benh": "Bệnh do nấm gây ra các đốm bệnh đặc trưng trên lá, thường có hình tròn hoặc không đều, màu nâu sẫm đến đen, với các vòng đồng tâm bên trong (giống 'bia bắn'). Bệnh cũng có thể gây hại trên thân (loét thân) và quả (thối quả ở gần cuống).",
+    "tac_hai": "Làm rụng lá sớm, giảm khả năng quang hợp, làm giảm kích thước và số lượng quả, ảnh hưởng đến năng suất. Thối quả làm giảm chất lượng.",
+    "nguyen_nhan_gay_benh": "Do nấm Alternaria linariae (trước đây gọi là Alternaria tomatophila hoặc Alternaria solani trên cà chua) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Difenoconazole",
+      "Propiconazole",
+      "Các thuốc gốc đồng (Copper)",
+      "Boscalid"
+    ]
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "ten_benh": "Bệnh Xoăn Vàng Lá Cà Chua (Tomato Yellow Leaf Curl Virus - TYLCV)",
+    "thong_tin_benh": "Bệnh do virus thuộc nhóm Begomovirus gây ra, lây lan chủ yếu qua bọ phấn trắng. Triệu chứng điển hình là lá non bị xoăn lại, mép lá cong lên trên, lá có màu vàng nhạt hoặc vàng, kích thước lá nhỏ hơn bình thường. Cây bị bệnh lùn, còi cọc, giảm khả năng ra hoa đậu quả.",
+    "tac_hai": "Gây thiệt hại năng suất nghiêm trọng, có thể mất trắng nếu cây nhiễm bệnh sớm. Cây còi cọc, không phát triển được.",
+    "nguyen_nhan_gay_benh": "Do các loài virus thuộc chi Begomovirus, phức hợp Tomato Yellow Leaf Curl Virus (TYLCV), lây truyền qua bọ phấn trắng (Bemisia tabaci).",
+    "danh_sach_thuoc_goi_y": [
+      "Không có thuốc hóa học đặc trị virus.",
+      "Kiểm soát vector truyền bệnh (bọ phấn trắng): Imidacloprid, Thiamethoxam, Acetamiprid, Cypermethrin, Dinotefuran, Pyriproxyfen, dầu khoáng, nấm ký sinh (Beauveria bassiana).",
+      "Sử dụng giống kháng hoặc chống chịu virus.",
+      "Nhổ bỏ và tiêu hủy cây bị bệnh sớm.",
+      "Luân canh cây trồng.",
+      "Sử dụng lưới chắn côn trùng trong nhà kính."
+    ]
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "ten_benh": "Nhện Đỏ (Nhện Hai Chấm) Hại Cà Chua (Spider Mites / Two-spotted Spider Mite on Tomato)",
+    "thong_tin_benh": "Do nhện nhỏ (Tetranychus urticae) gây hại bằng cách chích hút dịch cây ở mặt dưới lá. Lá bị hại có các chấm nhỏ li ti màu vàng hoặc trắng, sau đó lá chuyển sang màu vàng đồng, khô và rụng. Có thể thấy tơ nhện mỏng ở mặt dưới lá hoặc giữa các lá khi mật độ nhện cao.",
+    "tac_hai": "Làm giảm khả năng quang hợp, cây sinh trưởng kém, rụng lá. Nếu mật độ cao có thể làm chết cây. Ảnh hưởng đến năng suất và chất lượng quả.",
+    "nguyen_nhan_gay_benh": "Do nhện đỏ hai chấm (Tetranychus urticae) và các loài nhện tương tự thuộc họ Tetranychidae.",
+    "danh_sach_thuoc_goi_y": [
+      "Abamectin",
+      "Emamectin Benzoate",
+      "Milbemectin",
+      "Spiromesifen",
+      "Propargite",
+      "Hexythiazox",
+      "Etoxazole",
+      "Dầu khoáng (Mineral oil)",
+      "Lưu huỳnh (Sulfur)",
+      "Sử dụng thiên địch (ví dụ: bọ rùa bắt mồi, nhện nhỏ bắt mồi _Phytoseiulus persimilis_)."
+    ]
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "ten_benh": "Bệnh Đốm Lá Septoria Cà Chua (Tomato Septoria Leaf Spot)",
+    "thong_tin_benh": "Bệnh do nấm gây ra nhiều đốm nhỏ, tròn trên lá, ban đầu có quầng vàng. Sau đó, tâm đốm chuyển sang màu xám hoặc nâu nhạt, có các chấm đen nhỏ li ti (quả thể pycnidia của nấm). Bệnh thường bắt đầu từ các lá phía dưới rồi lan dần lên trên.",
+    "tac_hai": "Gây rụng lá hàng loạt, làm giảm khả năng quang hợp, cây suy yếu, ảnh hưởng đến năng suất và chất lượng quả.",
+    "nguyen_nhan_gay_benh": "Do nấm Septoria lycopersici gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Các thuốc gốc đồng (Copper)",
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Difenoconazole",
+      "Benomyl (nếu còn được phép)",
+      "Carbendazim"
+    ]
+  },
+  "Mango_Fruit___Alternaria": {
+    "ten_benh": "Bệnh Đốm Đen Alternaria trên Quả Xoài (Mango Fruit Alternaria Black Spot / Alternaria Rot)",
+    "thong_tin_benh": "Bệnh do nấm Alternaria alternata và các loài Alternaria khác gây ra các đốm đen nhỏ trên vỏ quả xoài, thường ở gần cuống hoặc trên các vết thương. Các đốm này có thể lan rộng, ăn sâu vào thịt quả gây thối.",
+    "tac_hai": "Làm giảm chất lượng và giá trị thương phẩm của quả. Gây thối quả sau thu hoạch.",
+    "nguyen_nhan_gay_benh": "Do các loài nấm thuộc chi Alternaria (ví dụ: Alternaria alternata).",
+    "danh_sach_thuoc_goi_y": [
+      "Azoxystrobin",
+      "Iprodione (phun phòng ngoài đồng)",
+      "Mancozeb (phun phòng ngoài đồng)",
+      "Propiconazole (phun phòng ngoài đồng)",
+      "Xử lý nước nóng sau thu hoạch.",
+      "Bao trái.",
+      "Thu hoạch cẩn thận, tránh làm xây xát quả."
+    ]
+  },
+  "Mango_Fruit___Anthracnose": {
+    "ten_benh": "Bệnh Thán Thư trên Quả Xoài (Mango Fruit Anthracnose)",
+    "thong_tin_benh": "Bệnh do nấm Colletotrichum gloeosporioides gây ra các đốm đen, lõm trên vỏ quả. Các đốm này có thể lan rộng, ăn sâu vào thịt quả, gây thối nhũn. Bệnh thường phát triển mạnh khi quả chín và trong điều kiện ẩm độ cao.",
+    "tac_hai": "Gây thối quả hàng loạt, đặc biệt là sau thu hoạch, làm giảm nghiêm trọng giá trị thương phẩm và thời gian bảo quản.",
+    "nguyen_nhan_gay_benh": "Do nấm Colletotrichum gloeosporioides sensu lato (complex) gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Prochloraz (xử lý sau thu hoạch)",
+      "Thiabendazole (xử lý sau thu hoạch)",
+      "Azoxystrobin (phun phòng ngoài đồng và có thể dùng sau thu hoạch)",
+      "Mancozeb (phun phòng ngoài đồng)",
+      "Các thuốc gốc đồng (Copper) (phun phòng ngoài đồng)",
+      "Xử lý nước nóng sau thu hoạch.",
+      "Bao trái."
+    ]
+  },
+  "Mango_Fruit___Stem_end_Rot": {
+    "ten_benh": "Bệnh Thối Cuống Quả Xoài (Mango Fruit Stem-end Rot)",
+    "thong_tin_benh": "Là một phức hợp bệnh do nhiều loại nấm gây ra (ví dụ: Lasiodiplodia theobromae, Phomopsis mangiferae, Botryosphaeria spp.). Bệnh thường bắt đầu từ phần cuống quả, lan dần xuống phần thịt quả làm cho phần thịt gần cuống bị mềm, đổi màu nâu hoặc đen và thối.",
+    "tac_hai": "Gây thối quả sau thu hoạch, làm giảm chất lượng và giá trị thương phẩm. Là một trong những nguyên nhân chính gây hư hỏng xoài trong quá trình bảo quản và vận chuyển.",
+    "nguyen_nhan_gay_benh": "Do nhiều loại nấm khác nhau, chủ yếu là Lasiodiplodia theobromae, Phomopsis mangiferae, Colletotrichum gloeosporioides, Dothiorella spp.",
+    "danh_sach_thuoc_goi_y": [
+      "Prochloraz (xử lý sau thu hoạch)",
+      "Thiabendazole (xử lý sau thu hoạch)",
+      "Azoxystrobin (phun phòng ngoài đồng và có thể dùng sau thu hoạch)",
+      "Fludioxonil (xử lý sau thu hoạch)",
+      "Xử lý nước nóng sau thu hoạch.",
+      "Cắt cuống quả cách xa núm cuống khoảng 1-2cm.",
+      "Vệ sinh vườn và dụng cụ thu hoạch."
+    ]
+  },
+  "Mango_Fruit___Black_Mould_Rot": {
+    "ten_benh": "Bệnh Mốc Đen Quả Xoài (Mango Fruit Black Mould Rot)",
+    "thong_tin_benh": "Bệnh do nấm Aspergillus niger hoặc các loài Aspergillus khác gây ra. Nấm thường xâm nhập qua các vết thương trên vỏ quả hoặc phát triển trên quả đã quá chín. Triệu chứng là các mảng mốc màu đen, dạng bột khô, bao phủ bề mặt quả, sau đó ăn sâu gây thối quả.",
+    "tac_hai": "Gây thối quả, đặc biệt là quả bị dập nát, trầy xước hoặc bảo quản không tốt. Làm giảm chất lượng và không an toàn cho tiêu thụ (một số loài Aspergillus có thể sinh độc tố).",
+    "nguyen_nhan_gay_benh": "Chủ yếu do nấm Aspergillus niger và các loài Aspergillus khác.",
+    "danh_sach_thuoc_goi_y": [
+      "Phòng ngừa là chính: thu hoạch cẩn thận, tránh làm tổn thương quả.",
+      "Bảo quản quả ở nơi khô ráo, thoáng mát.",
+      "Loại bỏ quả bị bệnh sớm.",
+      "Vệ sinh khu vực bảo quản.",
+      "Một số thuốc фунгицид dùng cho bảo quản sau thu hoạch có thể có tác dụng hạn chế."
+    ]
+  },
+  "Orange___Citrus_Canker_Diseases_Leaf_Orange": {
+    "ten_benh": "Bệnh Loét Sẹo Cam Quýt (Citrus Canker)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các vết loét nổi gờ, sần sùi trên lá, cành non và quả. Vết bệnh ban đầu nhỏ, sau lớn dần, có tâm màu nâu, viền úng nước và quầng vàng đặc trưng. Bệnh nặng làm lá rụng, cành khô, quả méo mó, nứt và rụng sớm.",
+    "tac_hai": "Làm suy yếu cây, giảm khả năng quang hợp, rụng lá, rụng quả, giảm năng suất và chất lượng quả nghiêm trọng. Gây cản trở lớn cho việc xuất khẩu.",
+    "nguyen_nhan_gay_benh": "Do vi khuẩn Xanthomonas citri subsp. citri (Xcc) hoặc các chủng khác của Xanthomonas axonopodis pv. citri.",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide, Copper Sulfate) - phun định kỳ.",
+      "Streptomycin (Kháng sinh - sử dụng hạn chế, tuân thủ quy định).",
+      "Cắt tỉa và tiêu hủy cành lá bị bệnh nặng.",
+      "Sử dụng giống kháng hoặc chống chịu.",
+      "Trồng cây chắn gió để hạn chế lây lan.",
+      "Kiểm soát sâu vẽ bùa (vì vết đục của sâu là cửa ngõ cho vi khuẩn xâm nhập)."
+    ]
+  },
+  "Orange___Citrus_Nutrient_Deficiency_Yellow_Leaf_Orange": {
+    "ten_benh": "Hiện Tượng Vàng Lá do Thiếu Dinh Dưỡng ở Cam Quýt",
+    "thong_tin_benh": "Là tình trạng sinh lý do cây không hấp thụ đủ một hoặc nhiều chất dinh dưỡng cần thiết. Triệu chứng vàng lá rất đa dạng tùy thuộc vào nguyên tố bị thiếu: vàng gân lá, vàng thịt lá giữa các gân, vàng đồng nhất, vàng từ mép lá vào,...",
+    "tac_hai": "Cây sinh trưởng kém, giảm khả năng quang hợp, giảm ra hoa đậu quả, năng suất và chất lượng quả thấp.",
+    "nguyen_nhan_gay_benh": "Thiếu một hoặc nhiều nguyên tố dinh dưỡng thiết yếu như: Nitơ (N), Phốt pho (P), Kali (K), Magiê (Mg), Sắt (Fe), Kẽm (Zn), Mangan (Mn), Bo (B),... Nguyên nhân có thể do đất nghèo dinh dưỡng, pH đất không phù hợp, hoặc vấn đề ở bộ rễ.",
+    "danh_sach_thuoc_goi_y": [
+      "Không dùng thuốc BVTV để trị.",
+      "Xác định đúng nguyên tố thiếu hụt qua phân tích đất, lá hoặc triệu chứng.",
+      "Bón phân bổ sung các nguyên tố bị thiếu (qua gốc hoặc phun qua lá).",
+      "Điều chỉnh pH đất nếu cần thiết.",
+      "Cải thiện cấu trúc đất và sức khỏe bộ rễ."
+    ]
+  },
+  "Orange___Greening": {
+    "ten_benh": "Bệnh Vàng Lá Greening (Hoàng Long) trên Cam Quýt (Citrus Greening / Huanglongbing - HLB)",
+    "thong_tin_benh": "Là một trong những bệnh nguy hiểm nhất trên cây có múi, do vi khuẩn gram âm sống trong mạch dẫn của cây. Triệu chứng điển hình là lá có đốm vàng không đều, không đối xứng qua gân chính (phiến lá bên to bên nhỏ), gân lá nổi, quả nhỏ, méo mó, hạt bị thối, nước quả chua.",
+    "tac_hai": "Làm cây suy kiệt nhanh chóng, giảm năng suất và chất lượng quả nghiêm trọng, cuối cùng dẫn đến chết cây. Bệnh lây lan rất nhanh qua rầy chổng cánh.",
+    "nguyen_nhan_gay_benh": "Do vi khuẩn Candidatus Liberibacter asiaticus (CLas - phổ biến ở châu Á), Candidatus Liberibacter africanus (CLaf), và Candidatus Liberibacter americanus (CLam). Lây truyền chủ yếu qua rầy chổng cánh (Diaphorina citri).",
+    "danh_sach_thuoc_goi_y": [
+      "Hiện chưa có thuốc đặc trị vi khuẩn gây bệnh Greening trong cây.",
+      "Kiểm soát vector truyền bệnh (rầy chổng cánh): Imidacloprid, Thiamethoxam, Fenpropathrin, Abamectin, dầu khoáng.",
+      "Sử dụng cây giống sạch bệnh.",
+      "Nhổ bỏ và tiêu hủy cây bị bệnh kịp thời.",
+      "Tăng cường chăm sóc, bón phân cân đối để cây khỏe.",
+      "Các biện pháp canh tác tổng hợp (IPM/ICM)."
+    ]
+  },
+  "Peach___Bacterial_spot": {
+    "ten_benh": "Bệnh Đốm Vi Khuẩn Đào (Peach Bacterial Spot)",
+    "thong_tin_benh": "Bệnh do vi khuẩn gây ra các đốm nhỏ, góc cạnh, màu nâu đến đen trên lá. Các mô bệnh có thể rụng đi tạo thành các lỗ thủng (shot-hole). Trên quả, vết bệnh là các đốm nhỏ, lõm, màu nâu sẫm, có thể nứt và chảy nhựa. Cành non cũng có thể bị nhiễm bệnh.",
+    "tac_hai": "Gây rụng lá sớm, làm giảm sức sống của cây. Làm giảm chất lượng và giá trị thương phẩm của quả. Cành non bị bệnh có thể bị khô chết.",
+    "nguyen_nhan_gay_benh": "Do vi khuẩn Xanthomonas arboricola pv. pruni gây ra.",
+    "danh_sach_thuoc_goi_y": [
+      "Các hợp chất gốc Đồng (Copper Oxychloride, Copper Hydroxide) - phun vào giai đoạn ngủ nghỉ và sau khi đậu quả.",
+      "Oxytetracycline (kháng sinh - sử dụng hạn chế và theo chỉ dẫn).",
+      "Sử dụng giống kháng bệnh.",
+      "Cắt tỉa cành bệnh và đảm bảo vườn thông thoáng."
+    ]
+  }
+}

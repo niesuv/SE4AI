@@ -4,21 +4,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agri_helper/screen/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:agri_helper/screen/mainapp.dart';
+import 'package:agri_helper/screen/disease_wiki_screen.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
-  
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await dotenv.load(fileName: ".env");
-  
-  runApp(ProviderScope(
-    child: MyApp(),
-  ));
+
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,12 +30,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Smart Harvest',
-      home: StreamBuilder(
+      home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Scaffold(
-              body: Text("Loading"),
+            return const Scaffold(
+              body: Center(child: Text("Loading")),
             );
           }
           if (snapshot.hasData) {
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
           }
         },
       ),
+      routes: {
+        '/wiki': (_) => const DiseaseWikiScreen(),
+      },
     );
   }
 }
