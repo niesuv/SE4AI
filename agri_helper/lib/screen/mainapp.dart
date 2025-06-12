@@ -59,6 +59,8 @@ class _MainAppState extends ConsumerState<MainApp>
         unselectedItemColor: Colors.black,
         onTap: onTapNav,
         type: BottomNavigationBarType.fixed,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
