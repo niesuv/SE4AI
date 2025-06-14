@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/benh_lua.dart';
+import 'package:agri_helper/fruit_icon.dart';
 import 'package:agri_helper/provider/user_provider.dart';
 import 'package:agri_helper/widget/imagepickerwidget.dart';
 import 'package:agri_helper/widget/userinfo.dart';
@@ -67,15 +68,15 @@ class _HomeState extends ConsumerState<Home> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) {
-      final data = value.data();
-      setState(() {
-        username = data == null ? 'Không xác định' : data['username'];
-      });
-      if (data != null) {
-        ref.read(UserProvider.notifier).setUsername(data['username']);
-        ref.read(UserProvider.notifier).setphone(data['phone']);
-      }
-    });
+          final data = value.data();
+          setState(() {
+            username = data == null ? 'Không xác định' : data['username'];
+          });
+          if (data != null) {
+            ref.read(UserProvider.notifier).setUsername(data['username']);
+            ref.read(UserProvider.notifier).setphone(data['phone']);
+          }
+        });
   }
 
   void _submitImage() async {
@@ -95,7 +96,9 @@ class _HomeState extends ConsumerState<Home> {
     );
 
     try {
-      final streamed = await request.send().timeout(const Duration(seconds: 60));
+      final streamed = await request.send().timeout(
+        const Duration(seconds: 60),
+      );
       final response = await http.Response.fromStream(streamed);
 
       if (response.statusCode == 200) {

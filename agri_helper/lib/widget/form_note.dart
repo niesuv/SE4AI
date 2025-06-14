@@ -4,6 +4,7 @@ import 'package:agri_helper/provider/note_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FormNote extends ConsumerStatefulWidget {
   final bool editMode;
@@ -18,9 +19,7 @@ class FormNote extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FormNoteState();
-  }
+  ConsumerState<FormNote> createState() => _FormNoteState();
 }
 
 class _FormNoteState extends ConsumerState<FormNote> {
@@ -72,6 +71,13 @@ class _FormNoteState extends ConsumerState<FormNote> {
         Navigator.of(context).pop();
       }
     }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
   }
 
   @override
