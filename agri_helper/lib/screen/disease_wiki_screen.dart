@@ -1,5 +1,3 @@
-// lib/screen/disease_wiki_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agri_helper/provider/disease_provider.dart';
@@ -34,8 +32,6 @@ class DiseaseWikiScreen extends ConsumerWidget {
     final asyncList = ref.watch(diseasesProvider);
 
     return Scaffold(
-      // Nếu trước đây bạn dùng backgroundColor, để nguyên hoặc bổ sung:
-      // backgroundColor: const Color(0xFFF2F3F7),
       body: SafeArea(
         child: asyncList.when(
           loading: () => const Center(child: CircularProgressIndicator()),

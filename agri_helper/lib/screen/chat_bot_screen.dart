@@ -1,5 +1,3 @@
-// lib/screen/chat_bot_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -63,7 +61,6 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen>
       body: SafeArea(
         child: Column(
           children: [
-            // Chat area or welcome screen
             Expanded(
               child: _messages.isEmpty && !_loading
                   ? Column(
@@ -129,15 +126,11 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen>
                 },
               ),
             ),
-
-            // Loading indicator
             if (_loading)
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: CircularProgressIndicator(),
               ),
-
-            // Input bar
             Container(
               padding: const EdgeInsets.symmetric(
                   horizontal: 16, vertical: 8),
