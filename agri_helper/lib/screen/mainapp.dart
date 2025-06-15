@@ -1,6 +1,7 @@
 import 'package:agri_helper/widget/noteview.dart';
 import 'package:agri_helper/widget/setting.dart';
 import 'package:agri_helper/widget/socialview.dart';
+import 'package:agri_helper/widget/user_resources/ResoureListPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agri_helper/appconstant.dart';
@@ -26,7 +27,7 @@ class _MainAppState extends ConsumerState<MainApp>
     super.initState();
     wid = [
       Home(),
-      NoteView(),
+      ResourceListPage(),
       HomePage(),
       const DiseaseWikiScreen(),
       const ChatBotScreen(),
@@ -66,7 +67,7 @@ class _MainAppState extends ConsumerState<MainApp>
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.edit_calendar_outlined),
-            label: 'Notes',
+            label: 'Resources',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),

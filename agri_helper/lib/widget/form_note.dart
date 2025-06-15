@@ -11,7 +11,7 @@ class FormNote extends ConsumerStatefulWidget {
   final String? initialTitle;
   final String? initialContent;
 
-  FormNote({
+  const FormNote({
     super.key,
     this.editMode = false,
     this.initialTitle,
@@ -73,12 +73,6 @@ class _FormNoteState extends ConsumerState<FormNote> {
     }
   }
 
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _contentController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
