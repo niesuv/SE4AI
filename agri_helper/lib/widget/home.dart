@@ -6,7 +6,6 @@ import 'dart:io';
 
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/benh_lua.dart';
-import 'package:agri_helper/fruit_icon.dart';
 import 'package:agri_helper/provider/user_provider.dart';
 import 'package:agri_helper/widget/imagepickerwidget.dart';
 import 'package:agri_helper/widget/userinfo.dart';
@@ -22,12 +21,10 @@ import 'package:lottie/lottie.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Home extends ConsumerStatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() {
-    return _HomeState();
-  }
+  ConsumerState<Home> createState() => _HomeState();
 }
 
 class _HomeState extends ConsumerState<Home> {
@@ -35,6 +32,7 @@ class _HomeState extends ConsumerState<Home> {
   File? _imagePick;
   String content = '';
   bool isLoading = false;
+  final List<(String, double)> predictions = [];
 
   // Plant type mapping Vietnamese - English
   final Map<String, String> plantTypeMap = {
@@ -82,10 +80,13 @@ class _HomeState extends ConsumerState<Home> {
         });
   }
 
-  void _submitImage() async {
+  Future<void> _submitImage() async {
     if (_imagePick == null) return;
 
-    setState(() => isLoading = true);
+    setState(() {
+      isLoading = true;
+      predictions.clear();
+    });
 
     final uri = Uri.parse(apilua);
     final request = http.MultipartRequest('POST', uri)
@@ -99,21 +100,35 @@ class _HomeState extends ConsumerState<Home> {
       );
 
     try {
-      final streamed =
-      await request.send().timeout(const Duration(seconds: 60));
+      final streamed = await request.send().timeout(const Duration(seconds: 60));
       final response = await http.Response.fromStream(streamed);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonMap = json.decode(response.body);
         final dynamic pd = jsonMap['predicted_disease'];
-        String diseaseName = '';
-        if (pd is List && pd.isNotEmpty) {
-          diseaseName = (pd[0].toString() == "no")
-              ? "Ảnh không hợp lệ"
-              : pd[0].toString();
-        }
-        setState(() {
-          content = diseaseName;
+          setState(() {
+          if (pd is List && pd.isNotEmpty) {
+            if (pd[0].toString() == "no") {
+              content = "Ảnh không hợp lệ";
+            } else {
+              // Get main prediction
+              final mainDisease = pd[0].toString();
+              final mainProbability = pd[1] as num;
+              content = mainDisease;
+              predictions.add((mainDisease, mainProbability.toDouble()));
+
+              // Get other probabilities
+              final Map<String, dynamic> probabilities = jsonMap['probabilities'];
+              probabilities.forEach((disease, probability) {
+                if (disease != mainDisease) {
+                  predictions.add((disease, (probability as num).toDouble()));
+                }
+              });
+              
+              // Sort other predictions by percentage in descending order
+              predictions.sort((a, b) => b.$2.compareTo(a.$2));
+            }
+          }
           isLoading = false;
         });
       } else {
@@ -138,6 +153,146 @@ class _HomeState extends ConsumerState<Home> {
         isLoading = false;
       });
     }
+  }
+  Widget _buildPredictionItem(String diseaseName, double percentage, bool isMain) {
+    final displayName = info.containsKey(diseaseName) 
+        ? info[diseaseName]!["name"].toString() 
+        : diseaseName;
+    
+    return Container(
+      padding: EdgeInsets.all(isMain ? 12 : 8),
+      margin: isMain ? null : const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        color: isMain ? Colors.teal.shade50 : Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              displayName,
+              style: GoogleFonts.roboto(
+                fontSize: isMain ? 17 : 15,
+                fontWeight: isMain ? FontWeight.w500 : FontWeight.normal,
+                color: isMain ? Colors.orange.shade900 : Colors.black87,
+              ),
+            ),
+          ),
+          Text(
+            '${percentage.toStringAsFixed(1)}%',
+            style: GoogleFonts.roboto(
+              fontSize: isMain ? 17 : 15,
+              fontWeight: isMain ? FontWeight.w500 : FontWeight.normal,
+              color: isMain ? Colors.teal[800] : Colors.grey[700],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildResultContent() {
+    if (content == "Ảnh không hợp lệ" || predictions.isEmpty) {
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        decoration: BoxDecoration(
+          color: Colors.red.shade50,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          content,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.roboto(
+            fontSize: 17,
+            fontWeight: FontWeight.w500,
+            color: Colors.redAccent,
+          ),
+        ),
+      );
+    }
+    
+    // Get main prediction and other diseases with non-zero probability
+    final mainDisease = predictions.first;
+    final otherDiseases = predictions
+        .skip(1)
+        .where((pred) => pred.$2 > 0)
+        .take(3)
+        .toList();
+    
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Kết quả chẩn đoán chính:',
+          style: GoogleFonts.roboto(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.teal[800],
+          ),
+        ),
+        const SizedBox(height: 8),
+        
+        // Main prediction
+        _buildPredictionItem(mainDisease.$1, mainDisease.$2, true),
+        
+        // Other diseases with non-zero probability
+        if (otherDiseases.isNotEmpty) ...[
+          const SizedBox(height: 16),
+          Text(
+            'Các bệnh khác có thể xảy ra:',
+            style: GoogleFonts.roboto(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Colors.teal[800],
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...otherDiseases.map((pred) =>
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: _buildPredictionItem(pred.$1, pred.$2, false),
+            ),
+          ),
+        ],
+        
+        // Disease details for main prediction
+        if (info.containsKey(mainDisease.$1) &&
+            info[mainDisease.$1]?['info'] != null) ...[
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.teal.shade50,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Thông tin chi tiết:',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.teal[800],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  info[mainDisease.$1]!['info'].toString(),
+                  style: GoogleFonts.roboto(
+                    fontSize: 15,
+                    color: Colors.black87,
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
   }
 
   @override
@@ -183,15 +338,15 @@ class _HomeState extends ConsumerState<Home> {
                     value: selectedFruitDisplay,
                     items: plantTypeMap.keys
                         .map((name) => DropdownMenuItem(
-                      value: name,
-                      child: Text(
-                        name,
-                        style: GoogleFonts.roboto(
-                          fontSize: 16,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ))
+                              value: name,
+                              child: Text(
+                                name,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ))
                         .toList(),
                     buttonStyleData: ButtonStyleData(
                       height: 50,
@@ -211,8 +366,7 @@ class _HomeState extends ConsumerState<Home> {
                       ),
                     ),
                     iconStyleData: IconStyleData(
-                      icon: const Icon(Icons.keyboard_arrow_down_rounded,
-                          size: 28),
+                      icon: const Icon(Icons.keyboard_arrow_down_rounded, size: 28),
                       iconEnabledColor: Colors.teal,
                     ),
                     menuItemStyleData: const MenuItemStyleData(
@@ -291,29 +445,29 @@ class _HomeState extends ConsumerState<Home> {
                             ),
                             child: _imagePick == null
                                 ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Lottie.asset(
-                                  'assets/lottie/upload.json',
-                                  width: 150,
-                                  repeat: true,
-                                ),
-                                Text(
-                                  "Nhấn để chọn ảnh cây cần kiểm tra",
-                                  style: GoogleFonts.roboto(
-                                    color: Colors.grey[700],
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            )
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.asset(
+                                        'assets/lottie/upload.json',
+                                        width: 150,
+                                        repeat: true,
+                                      ),
+                                      Text(
+                                        "Nhấn để chọn ảnh cây cần kiểm tra",
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey[700],
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 : ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.file(
-                                _imagePick!,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(
+                                      _imagePick!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                           ),
                         ),
                       ],
@@ -389,64 +543,7 @@ class _HomeState extends ConsumerState<Home> {
                   ],
                 ),
                 padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Display result or error without "Kết quả:" prefix for errors
-                    Builder(builder: (context) {
-                      final hasInfo = info.containsKey(content);
-                      final displayText = hasInfo
-                          ? 'Kết quả: ${info[content]!["name"]}'
-                          : content;
-                      final textColor = hasInfo
-                          ? (content == 'healthy'
-                          ? Colors.green.shade700
-                          : Colors.orange.shade900)
-                          : Colors.redAccent;
-                      return Text(
-                        displayText,
-                        style: GoogleFonts.roboto(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: textColor,
-                        ),
-                      );
-                    }),
-                    const SizedBox(height: 16),
-                    // Only show detailed info for actual disease results
-                    if (info.containsKey(content) &&
-                        info[content]?['info'] != null)
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.teal.shade50,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Thông tin chi tiết:',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.teal[800],
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              info[content]!['info']!,
-                              style: GoogleFonts.roboto(
-                                fontSize: 15,
-                                color: Colors.black87,
-                                height: 1.5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
+                child: _buildResultContent(),
               ),
           ],
         ),
