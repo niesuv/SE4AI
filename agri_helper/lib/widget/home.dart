@@ -241,7 +241,7 @@ class _HomeState extends ConsumerState<Home> {
         if (otherDiseases.isNotEmpty) ...[
           const SizedBox(height: 16),
           Text(
-            'Các bệnh có thể xảy ra:',
+            'Các bệnh khác có thể xảy ra:',
             style: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w500,
