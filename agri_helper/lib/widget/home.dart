@@ -3,6 +3,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:agri_helper/appconstant.dart';
 import 'package:agri_helper/benh_lua.dart';
@@ -131,6 +133,13 @@ class _HomeState extends ConsumerState<Home> {
           }
           isLoading = false;
         });
+
+        // Get disease images for the main prediction
+        _getDiseaseImages(predictions.first.$1).then((images) {
+          setState(() {
+            diseaseImages = images;
+          });
+        });
       } else {
         setState(() {
           content = 'error: HTTP ${response.statusCode}';
@@ -192,6 +201,117 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
+  // Get random disease images based on plant type and disease name
+  Future<List<String>> _getRandomDiseaseImages(String plantType, String diseaseName) async {
+    if (diseaseName.toLowerCase().contains('healthy') || 
+        diseaseName.toLowerCase() == 'no') {
+      return [];
+    }
+
+    try {
+      String plantFolder = plantType.toLowerCase();
+      String diseaseFolder = diseaseName;
+      String basePath = 'assets/disease/$plantFolder/$diseaseFolder';
+      
+      // Get all available images in the folder by trying common image patterns
+      List<String> allImages = [];
+      final assetManifest = await rootBundle.loadString('AssetManifest.json');
+      final Map<String, dynamic> manifestMap = json.decode(assetManifest);
+      
+      // Filter assets to get only images from our disease folder
+      allImages = manifestMap.keys
+          .where((String key) => key.startsWith(basePath) && 
+                               (key.endsWith('.jpg') || 
+                                key.endsWith('.jpeg') || 
+                                key.endsWith('.png')))
+          .toList();
+
+      if (allImages.isEmpty) return [];
+
+      // Shuffle and take up to 3 images
+      allImages.shuffle(math.Random());
+      return allImages.take(3).toList();
+    } catch (e) {
+      print('Error getting disease images: $e');
+      return [];
+    }
+  }
+
+  // Lấy danh sách 3 ảnh minh họa ngẫu nhiên cho bệnh
+  Future<List<String>> _getDiseaseImages(String diseaseName) async {
+    try {
+      // Load manifest file để lấy danh sách assets
+      final manifestContent = await rootBundle.loadString('AssetManifest.json');
+      final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+      
+      // Lấy tất cả các assets trong thư mục bệnh tương ứng
+      final diseasePath = 'assets/disease/${selectedFruit}/$diseaseName';
+      final imageAssets = manifestMap.keys
+          .where((String key) => key.startsWith(diseasePath) && 
+              (key.endsWith('.jpg') || key.endsWith('.png') || key.endsWith('.jpeg')))
+          .toList();
+
+      if (imageAssets.isEmpty) {
+        return [];
+      }
+
+      // Chọn ngẫu nhiên 3 ảnh hoặc ít hơn nếu không đủ
+      imageAssets.shuffle();
+      return imageAssets.take(3).toList();
+    } catch (e) {
+      print('Error loading disease images: $e');
+      return [];
+    }
+  }
+
+  List<String> diseaseImages = [];
+
+  Widget _buildDiseaseImages() {
+    if (diseaseImages.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Hình ảnh minh họa:',
+            style: GoogleFonts.roboto(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 8),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: diseaseImages.map((imagePath) {
+                return Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildResultContent() {
     if (content == "Ảnh không hợp lệ" || predictions.isEmpty) {
       return Container(
@@ -213,35 +333,12 @@ class _HomeState extends ConsumerState<Home> {
       );
     }
     
-    // Get main prediction and other diseases with non-zero probability
-    final mainDisease = predictions.first;
-    final otherDiseases = predictions
-        .skip(1)
-        .where((pred) => pred.$2 > 0)
-        .take(3)
-        .toList();
-    
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Kết quả chẩn đoán chính:',
-          style: GoogleFonts.roboto(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: Colors.teal[800],
-          ),
-        ),
-        const SizedBox(height: 8),
-        
-        // Main prediction
-        _buildPredictionItem(mainDisease.$1, mainDisease.$2, true),
-        
-        // Other diseases with non-zero probability
-        if (otherDiseases.isNotEmpty) ...[
-          const SizedBox(height: 16),
+    return FutureBuilder<List<String>>(
+      future: _getRandomDiseaseImages(selectedFruit, predictions.first.$1),
+      builder: (context, snapshot) {
+        final List<Widget> children = [
           Text(
-            'Các bệnh khác có thể xảy ra:',
+            'Kết quả chẩn đoán chính:',
             style: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -249,49 +346,72 @@ class _HomeState extends ConsumerState<Home> {
             ),
           ),
           const SizedBox(height: 8),
-          ...otherDiseases.map((pred) =>
+            // Main prediction
+          _buildPredictionItem(predictions.first.$1, predictions.first.$2, true),
+          
+          // Other diseases with non-zero probability
+          if (predictions.length > 1) ...[
+            const SizedBox(height: 16),
+            Text(
+              'Các bệnh khác có thể xảy ra:',
+              style: GoogleFonts.roboto(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.teal[800],
+              ),
+            ),
+            const SizedBox(height: 8),
+            ...predictions
+                .skip(1)
+                .where((pred) => pred.$2 > 0)
+                .take(3)
+                .map((pred) => Container(
+                      margin: const EdgeInsets.only(bottom: 8),
+                      child: _buildPredictionItem(pred.$1, pred.$2, false),
+                    )),
+          ],
+          
+          // Disease details
+          if (info.containsKey(predictions.first.$1) &&
+              info[predictions.first.$1]?['info'] != null) ...[
+            const SizedBox(height: 16),
             Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              child: _buildPredictionItem(pred.$1, pred.$2, false),
-            ),
-          ),
-        ],
-        
-        // Disease details for main prediction
-        if (info.containsKey(mainDisease.$1) &&
-            info[mainDisease.$1]?['info'] != null) ...[
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.teal.shade50,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Thông tin chi tiết:',
-                  style: GoogleFonts.roboto(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.teal[800],
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.teal.shade50,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Thông tin chi tiết:',
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.teal[800],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  info[mainDisease.$1]!['info'].toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 15,
-                    color: Colors.black87,
-                    height: 1.5,
+                  const SizedBox(height: 8),
+                  Text(
+                    info[predictions.first.$1]!['info'].toString(),
+                    style: GoogleFonts.roboto(
+                      fontSize: 15,
+                      color: Colors.black87,
+                      height: 1.5,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ],
+          ],
+        ];
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children,
+        );
+      },
     );
   }
 
@@ -545,6 +665,10 @@ class _HomeState extends ConsumerState<Home> {
                 padding: const EdgeInsets.all(20),
                 child: _buildResultContent(),
               ),
+
+            // Display disease illustrations
+            if (!isLoading && predictions.isNotEmpty && predictions.first.$1 != "no")
+              _buildDiseaseImages(),
           ],
         ),
       ),

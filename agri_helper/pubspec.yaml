@@ -56,3 +56,54 @@ flutter:
     - assets/final_2.json
     - assets/final_2_with_thumbs.json
     - assets/plants/
+    - assets/disease/apple/Apple___Cedar_apple_rust/
+    - assets/disease/apple/Apple___Apple_scab/
+    - assets/disease/apple/Apple___Black_rot/
+    - assets/disease/strawberry/Strawberry___Leaf_scorch/
+    - assets/disease/rice/Sheath Blight/
+    - assets/disease/rice/Leaf Blast/
+    - assets/disease/rice/Bacterial Leaf Blight/
+    - assets/disease/rice/Brown Spot/
+    - assets/disease/rice/Leaf scald/
+    - assets/disease/potato/Potato___Early_blight/
+    - assets/disease/potato/Potato___Late_blight/
+    - assets/disease/durian/LEAF_BLIGHT/
+    - assets/disease/durian/ALLOCARIDARA_ATTACK/
+    - assets/disease/durian/ALGAL_LEAF_SPOT/
+    - assets/disease/durian/PHOMOPSIS_LEAF_SPOT/
+    - assets/disease/pepper/Pepper_bell___Bacterial_spot/
+    - assets/disease/tomato/Tomato___Target_Spot/
+    - assets/disease/tomato/Tomato___Late_blight/
+    - assets/disease/tomato/Tomato___Tomato_mosaic_virus/
+    - assets/disease/tomato/Tomato___Leaf_Mold/
+    - assets/disease/tomato/Tomato___Bacterial_spot/
+    - assets/disease/tomato/Tomato___Early_blight/
+    - assets/disease/tomato/Tomato___Tomato_Yellow_Leaf_Curl_Virus/
+    - assets/disease/tomato/Tomato___Spider_mites Two-spotted_spider_mite/
+    - assets/disease/tomato/Tomato___Septoria_leaf_spot/
+    - assets/disease/mango/Bacterial Canker/
+    - assets/disease/mango/Anthracnose/
+    - assets/disease/mango/Powdery Mildew/
+    - assets/disease/mango/Cutting Weevil/
+    - assets/disease/mango/Sooty Mould/
+    - assets/disease/mango/Gall Midge/
+    - assets/disease/mango_fruit/Alternaria/
+    - assets/disease/mango_fruit/Anthracnose/
+    - assets/disease/mango_fruit/Stem end Rot/
+    - assets/disease/mango_fruit/Black Mould Rot/
+    - assets/disease/orange/Citrus_Canker_Diseases_Leaf_Orange/
+    - assets/disease/orange/Citrus_Nutrient_Deficiency_Yellow_Leaf_Orange/
+    - assets/disease/orange/Greening/
+    - assets/disease/corn/Corn_(maize)___Common_rust_/
+    - assets/disease/corn/Corn_(maize)___Northern_Leaf_Blight/
+    - assets/disease/corn/Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/
+    - assets/disease/banana/Banana Fruit-Scarring Beetle/
+    - assets/disease/banana/Anthracnose/
+    - assets/disease/banana/Black and Yellow Sigatoka/
+    - assets/disease/banana/Banana Skipper Damage/
+    - assets/disease/banana/Chewing insect damage on banana leaf/
+    - assets/disease/banana/Banana Split Peel/
+    - assets/disease/grape/Grape___Black_rot/
+    - assets/disease/grape/Grape___Leaf_blight_(Isariopsis_Leaf_Spot)/
+    - assets/disease/grape/Grape___Esca_(Black_Measles)/
+    - assets/disease/peach/Peach___Bacterial_spot/
