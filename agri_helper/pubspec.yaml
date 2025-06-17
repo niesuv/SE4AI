@@ -10,7 +10,7 @@ dependencies:
   flutter_typeahead: ^5.2.0
   flutter:
     sdk: flutter
-  image: ^3.2.2
+  image: ^4.3.0
   path: ^1.8.2
   flutter_markdown: ^0.6.10
   flutter_riverpod: ^2.4.10
@@ -42,6 +42,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: "^0.13.1"
 
 
 
@@ -107,3 +108,16 @@ flutter:
     - assets/disease/grape/Grape___Leaf_blight_(Isariopsis_Leaf_Spot)/
     - assets/disease/grape/Grape___Esca_(Black_Measles)/
     - assets/disease/peach/Peach___Bacterial_spot/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false             
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 21      
+  remove_alpha_ios: true   
+  web:
+    generate: false
+  windows:
+    generate: false 
+  macos:
+    generate: false
