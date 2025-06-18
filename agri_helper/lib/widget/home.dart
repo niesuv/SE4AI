@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math' as math;
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:agri_helper/appconstant.dart';
@@ -107,11 +106,12 @@ class _HomeState extends ConsumerState<Home> {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonMap = json.decode(response.body);
-        final dynamic pd = jsonMap['predicted_disease'];
-          setState(() {
+        final dynamic pd = jsonMap['predicted_disease'];          setState(() {
           if (pd is List && pd.isNotEmpty) {
             if (pd[0].toString() == "no") {
               content = "Ảnh không hợp lệ";
+              predictions.clear(); // Đảm bảo xóa predictions nếu ảnh không hợp lệ
+              diseaseImages.clear(); // Xóa ảnh hiện tại nếu có
             } else {
               // Get main prediction
               final mainDisease = pd[0].toString();
@@ -129,16 +129,16 @@ class _HomeState extends ConsumerState<Home> {
               
               // Sort other predictions by percentage in descending order
               predictions.sort((a, b) => b.$2.compareTo(a.$2));
+
+              // Chỉ tải ảnh khi có kết quả hợp lệ
+              _getDiseaseImages(predictions.first.$1).then((images) {
+                setState(() {
+                  diseaseImages = images;
+                });
+              });
             }
           }
           isLoading = false;
-        });
-
-        // Get disease images for the main prediction
-        _getDiseaseImages(predictions.first.$1).then((images) {
-          setState(() {
-            diseaseImages = images;
-          });
         });
       } else {
         setState(() {
@@ -201,44 +201,13 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
-  // Get random disease images based on plant type and disease name
-  Future<List<String>> _getRandomDiseaseImages(String plantType, String diseaseName) async {
+  // Lấy danh sách ảnh minh họa cho bệnh
+  Future<List<String>> _getDiseaseImages(String diseaseName) async {
     if (diseaseName.toLowerCase().contains('healthy') || 
         diseaseName.toLowerCase() == 'no') {
       return [];
     }
 
-    try {
-      String plantFolder = plantType.toLowerCase();
-      String diseaseFolder = diseaseName;
-      String basePath = 'assets/disease/$plantFolder/$diseaseFolder';
-      
-      // Get all available images in the folder by trying common image patterns
-      List<String> allImages = [];
-      final assetManifest = await rootBundle.loadString('AssetManifest.json');
-      final Map<String, dynamic> manifestMap = json.decode(assetManifest);
-      
-      // Filter assets to get only images from our disease folder
-      allImages = manifestMap.keys
-          .where((String key) => key.startsWith(basePath) && 
-                               (key.endsWith('.jpg') || 
-                                key.endsWith('.jpeg') || 
-                                key.endsWith('.png')))
-          .toList();
-
-      if (allImages.isEmpty) return [];
-
-      // Shuffle and take up to 3 images
-      allImages.shuffle(math.Random());
-      return allImages.take(3).toList();
-    } catch (e) {
-      print('Error getting disease images: $e');
-      return [];
-    }
-  }
-
-  // Lấy danh sách 3 ảnh minh họa ngẫu nhiên cho bệnh
-  Future<List<String>> _getDiseaseImages(String diseaseName) async {
     try {
       // Load manifest file để lấy danh sách assets
       final manifestContent = await rootBundle.loadString('AssetManifest.json');
@@ -333,12 +302,26 @@ class _HomeState extends ConsumerState<Home> {
       );
     }
     
-    return FutureBuilder<List<String>>(
-      future: _getRandomDiseaseImages(selectedFruit, predictions.first.$1),
-      builder: (context, snapshot) {
-        final List<Widget> children = [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Kết quả chẩn đoán chính:',
+          style: GoogleFonts.roboto(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.teal[800],
+          ),
+        ),
+        const SizedBox(height: 8),
+        // Main prediction
+        _buildPredictionItem(predictions.first.$1, predictions.first.$2, true),
+        
+        // Other diseases with non-zero probability
+        if (predictions.length > 1) ...[
+          const SizedBox(height: 16),
           Text(
-            'Kết quả chẩn đoán chính:',
+            'Các bệnh khác có thể xảy ra:',
             style: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -346,72 +329,51 @@ class _HomeState extends ConsumerState<Home> {
             ),
           ),
           const SizedBox(height: 8),
-            // Main prediction
-          _buildPredictionItem(predictions.first.$1, predictions.first.$2, true),
-          
-          // Other diseases with non-zero probability
-          if (predictions.length > 1) ...[
-            const SizedBox(height: 16),
-            Text(
-              'Các bệnh khác có thể xảy ra:',
-              style: GoogleFonts.roboto(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.teal[800],
-              ),
+          ...predictions
+              .skip(1)
+              .where((pred) => pred.$2 > 0)
+              .take(3)
+              .map((pred) => Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    child: _buildPredictionItem(pred.$1, pred.$2, false),
+                  )),
+        ],
+        
+        // Disease details
+        if (info.containsKey(predictions.first.$1) &&
+            info[predictions.first.$1]?['info'] != null) ...[
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.teal.shade50,
+              borderRadius: BorderRadius.circular(12),
             ),
-            const SizedBox(height: 8),
-            ...predictions
-                .skip(1)
-                .where((pred) => pred.$2 > 0)
-                .take(3)
-                .map((pred) => Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      child: _buildPredictionItem(pred.$1, pred.$2, false),
-                    )),
-          ],
-          
-          // Disease details
-          if (info.containsKey(predictions.first.$1) &&
-              info[predictions.first.$1]?['info'] != null) ...[
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.teal.shade50,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Thông tin chi tiết:',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.teal[800],
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Thông tin chi tiết:',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.teal[800],
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    info[predictions.first.$1]!['info'].toString(),
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      color: Colors.black87,
-                      height: 1.5,
-                    ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  info[predictions.first.$1]!['info'].toString(),
+                  style: GoogleFonts.roboto(
+                    fontSize: 15,
+                    color: Colors.black87,
+                    height: 1.5,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ];
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
-        );
-      },
+          ),
+        ],
+      ],
     );
   }
 
