@@ -49,7 +49,7 @@ class _ResourceDetailPageState extends State<ResourceDetailPage> {
     };
 
     if (shouldNotify) {
-      await NotificationService.scheduleNotification(
+       NotificationService.scheduleNotification(
         id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
         title: newAction['name'] as String,
         body: newAction['content'] as String? ?? '',
