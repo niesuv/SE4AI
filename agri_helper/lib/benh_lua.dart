@@ -159,8 +159,8 @@ const info = {
     "info": "Cây chuối phát triển tốt, không có dấu hiệu bệnh. Duy trì chế độ chăm sóc hiện tại để đảm bảo năng suất cao."
   },
   "Healthy Banana leaf": {
-    "name": "Lá chuối khỏe mạnh",
-    "info": "Lá chuối có màu xanh đậm, không có dấu hiệu bệnh. Tiếp tục duy trì chế độ chăm sóc và theo dõi định kỳ."
+    "name": "Chuối khỏe mạnh",
+    "info": "Cây chuối phát triển tốt, không có dấu hiệu bệnh. Duy trì chế độ chăm sóc hiện tại để đảm bảo năng suất cao."
   },
   "Banana Split Peel": {
     "name": "Nứt vỏ chuối",
