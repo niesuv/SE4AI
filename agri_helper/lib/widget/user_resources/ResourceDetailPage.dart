@@ -86,73 +86,162 @@ class _ResourceDetailPageState extends State<ResourceDetailPage> {
         backgroundColor: theme.colorScheme.primary,
         foregroundColor: theme.colorScheme.onPrimary,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
           children: [
-            Expanded(
-              child:
-                  editable.actions.isEmpty
-                      ? Center(
-                        child: Text(
-                          'Chưa có hành động nào.',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      )
-                      : ListView.separated(
-                        itemCount: editable.actions.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 12),
-                        itemBuilder: (context, index) {
-                          final action = editable.actions[index];
-                          final startAt =
-                              action['startAt'] is Timestamp
-                                  ? (action['startAt'] as Timestamp).toDate()
-                                  : action['startAt'] as DateTime;
+            if (editable.actions.isEmpty)
+              Center(
+                child: Text(
+                  'Chưa có hành động nào.',
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              )
+            else
+              ...editable.actions.asMap().entries.map((entry) {
+                final index = entry.key;
+                final action = entry.value;
+                final startAt = action['startAt'] is Timestamp
+                    ? (action['startAt'] as Timestamp).toDate()
+                    : action['startAt'] as DateTime;
 
-                          return Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            elevation: 2,
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.all(16),
-                              title: Text(
-                                action['name'] ?? '',
-                                style: theme.textTheme.titleMedium,
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    DateFormat.yMd().add_jm().format(startAt),
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: theme.colorScheme.primary,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  if ((action['content'] ?? '').isNotEmpty)
-                                    Text(
-                                      action['content'],
-                                      style: theme.textTheme.bodyMedium,
-                                    ),
-                                ],
-                              ),
-                              trailing: IconButton(
-                                icon: const Icon(
-                                  Icons.delete_outline,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () => _removeAction(index),
-                              ),
-                            ),
-                          );
-                        },
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 2,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(16),
+                      title: Text(
+                        action['name'] ?? '',
+                        style: theme.textTheme.titleMedium,
                       ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 4),
+                          Text(
+                            DateFormat.yMd().add_jm().format(startAt),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          if ((action['content'] ?? '').isNotEmpty)
+                            Text(
+                              action['content'],
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete_outline, color: Colors.red),
+                        onPressed: () => _removeAction(index),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            const SizedBox(height: 8),
+            ExpansionTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              title: Text(
+                'Thêm hành động mới',
+                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              children: [
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _actionNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Tên hành động',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    prefixIcon: const Icon(Icons.task_alt_outlined),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                GestureDetector(
+                  onTap: () async {
+                    final now = DateTime.now();
+                    final pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: now,
+                      firstDate: now,
+                      lastDate: DateTime(now.year + 5),
+                    );
+                    if (pickedDate == null) return;
+
+                    final pickedTime = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.fromDateTime(now),
+                    );
+                    if (pickedTime == null) return;
+
+                    setState(() {
+                      _selectedStartAt = DateTime(
+                        pickedDate.year,
+                        pickedDate.month,
+                        pickedDate.day,
+                        pickedTime.hour,
+                        pickedTime.minute,
+                      );
+                    });
+                  },
+                  child: InputDecorator(
+                    decoration: InputDecoration(
+                      labelText: 'Thời gian bắt đầu',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      prefixIcon: const Icon(Icons.access_time),
+                    ),
+                    child: Text(
+                      _selectedStartAt != null
+                          ? DateFormat.yMd().add_jm().format(_selectedStartAt!)
+                          : 'Chọn thời gian',
+                      style: _selectedStartAt != null
+                          ? null
+                          : TextStyle(color: theme.hintColor),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextFormField(
+                  controller: _actionContentController,
+                  decoration: InputDecoration(
+                    labelText: 'Nội dung chi tiết',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    prefixIcon: const Icon(Icons.description_outlined),
+                  ),
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 12),
+                CheckboxListTile(
+                  value: _shouldNotify,
+                  onChanged: (value) {
+                    setState(() => _shouldNotify = value ?? false);
+                  },
+                  title: const Text("Nhắc tôi bằng thông báo"),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: FilledButton.icon(
+                    onPressed: _addAction,
+                    icon: const Icon(Icons.add),
+                    label: const Text('Thêm hành động'),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
             ),
-            const SizedBox(height: 100), // avoid overlap with FAB
+            const SizedBox(height: 100), // avoid FAB overlap
           ],
         ),
       ),
@@ -161,113 +250,7 @@ class _ResourceDetailPageState extends State<ResourceDetailPage> {
         icon: const Icon(Icons.save),
         label: const Text('Lưu lại'),
       ),
-      bottomSheet: Container(
-        color: theme.colorScheme.surface,
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Thêm hành động mới',
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _actionNameController,
-                decoration: InputDecoration(
-                  labelText: 'Tên hành động',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.task_alt_outlined),
-                ),
-              ),
-              const SizedBox(height: 12),
-              GestureDetector(
-                onTap: () async {
-                  final now = DateTime.now();
-                  final pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: now,
-                    firstDate: now,
-                    lastDate: DateTime(now.year + 5),
-                  );
-                  if (pickedDate == null) return;
-
-                  final pickedTime = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.fromDateTime(now),
-                  );
-                  if (pickedTime == null) return;
-
-                  setState(() {
-                    _selectedStartAt = DateTime(
-                      pickedDate.year,
-                      pickedDate.month,
-                      pickedDate.day,
-                      pickedTime.hour,
-                      pickedTime.minute,
-                    );
-                  });
-                },
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: 'Thời gian bắt đầu',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.access_time),
-                  ),
-                  child: Text(
-                    _selectedStartAt != null
-                        ? DateFormat.yMd().add_jm().format(_selectedStartAt!)
-                        : 'Chọn thời gian',
-                    style:
-                        _selectedStartAt != null
-                            ? null
-                            : TextStyle(color: theme.hintColor),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _actionContentController,
-                decoration: InputDecoration(
-                  labelText: 'Nội dung chi tiết',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.description_outlined),
-                ),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 12),
-              CheckboxListTile(
-                value: _shouldNotify,
-                onChanged: (value) {
-                  setState(() => _shouldNotify = value ?? false);
-                },
-                title: const Text("Nhắc tôi bằng thông báo"),
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerRight,
-                child: FilledButton.icon(
-                  onPressed: _addAction,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Thêm hành động'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
+
 }
