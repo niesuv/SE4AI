@@ -156,7 +156,7 @@ SE4AI/
   - `/results`: Detection results retrieval
 
 ### 3. ML Module (MODEL/)
-- **Framework**: TensorFlow
+- **Framework**: Pytorch
 - **Model Architecture**: CNN-based classification
 - **Performance Metrics**:
   - Accuracy
