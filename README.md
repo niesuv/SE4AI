@@ -9,7 +9,7 @@ This project is the final semester examination for the Software Engineering for 
 ```
 ┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   Mobile App    │     │   Backend    │     │   ML Module     │
-│   (Flutter)     │────▶│   (Python)   │────▶│  (TensorFlow)   │
+│   (Flutter)     │────▶│   (Python)   │────▶│  (Pytorch)   │
 └─────────────────┘     └──────────────┘     └─────────────────┘
         ▲                      │                      │
         │                      ▼                      ▼
@@ -31,7 +31,7 @@ This project is the final semester examination for the Software Engineering for 
    - Image processing and ML model inference
 
 3. **ML Module**
-   - TensorFlow-based disease detection model
+   - Pytorch-based disease detection model
    - Real-time image processing
    - Multi-class disease classification
 
